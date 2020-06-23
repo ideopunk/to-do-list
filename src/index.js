@@ -17,24 +17,20 @@ const todoitem = (title, description, dueDate, priority) => {
     return { title, description, dueDate, priority, status, tags, addTag, deleteTag };
 };
 
-let fakeitem = todoitem('Walk dog', 'Walk dog around the block', '1pm', 'ASAP');
-console.log('yo')
-console.log(fakeitem)
-console.log(fakeitem.title)
-console.log(fakeitem.tags)
-fakeitem.addTag('Pets')
-console.log(fakeitem.tags)
-fakeitem.addTag('Exercise')
-console.log(fakeitem.tags)
-fakeitem.addTag('Boring')
-console.log(fakeitem.tags)
-fakeitem.deleteTag('Exercise')
-console.log(fakeitem.tags)
 
 const todolist = (() => {
-    const list = []
+    const list = [];
     let projectSort = tag => {
-        let sortedList = []
+        let sortedList = list.filter(function(item) {
+            let x = false;
+            for (let i = 0; i < item.tags.length; i++) {
+                if (item.tags[i] === tag) {
+                    x = true;
+                    break;
+                }
+            }
+            return x;
+        })
         return sortedList;
     }
     let addToList = item => {
@@ -51,3 +47,4 @@ const todolist = (() => {
 
     return {list, addToList, deleteFromList, projectSort}
 })();
+
