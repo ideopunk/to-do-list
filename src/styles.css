@@ -19,7 +19,7 @@ form {
 
 }
 
-#newItemForm {
+.hide {
     visibility: hidden;
 }
 

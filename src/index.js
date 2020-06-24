@@ -1,21 +1,6 @@
 import './styles.css';
+import todoitem from './todoitem.js'
 
-const todoitem = (title, description, dueDate, priority) => {
-    const status = "incomplete"
-    let tags = []
-    let addTag = (tag) => {
-        tags.push(tag)
-    }
-    let deleteTag = (tag) => {
-        for (let i = 0; i < tags.length; i++) {
-            if (tags[i] === tag) {
-                tags.splice(i, 1);
-                break;
-            }
-        }
-    }
-    return { title, description, dueDate, priority, status, tags, addTag, deleteTag };
-};
 
 
 const todolist = (() => {
@@ -51,20 +36,30 @@ const todolist = (() => {
 todolist.addToList(todoitem('Walk dog', "Just around the block", "1pm", "ASAP"))
 todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
+const formInterface = (() => {
+    function generate() {
+        let formsubmit = document.querySelector('#formsubmit')
+        formsubmit.addEventListener('click', )
+    }
+})();
+
 const menuInterface = (() => {
+    function showForm() {
+        let newItemForm = document.querySelector('#newItemForm')
+        newItemForm.classList.remove('hide')
+    }
+
     function menuInterfaceGenerate() {
-        let sort = document.querySelector('#sort')
-        let newToDo = document.querySelector('#newToDo')
+        // let sort = document.querySelector('#sort');
+        let newToDo = document.querySelector('#newToDo');
         // sort.addEventListener('click', alert('yo'))
-        // newToDo.addEventListener('click', newToDo())
+        newToDo.addEventListener('click', showForm)
     }
     return { menuInterfaceGenerate}
 })();
 
 const userInterface = (() => {
     let containerList = document.querySelector('#containerList')
-
-    let topMenu = document.createElement('div');
 
     // when you click on any item, it should expand to show full details
     function expand(event) {
