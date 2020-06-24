@@ -1,5 +1,5 @@
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
     display: flex;
     justify-content: center;
 }
@@ -12,23 +12,84 @@ button {
     background-color: pink;
     border-radius: 50%;
     border: 1px solid white;
+    font-family: sans-serif;
+}
+
+label {
+    font-family: sans-serif;
+    color: rgb(109, 46, 255);
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid pink;
+    border-radius: 10px;
 }
 
 #newItemForm {
     display: grid;
-
+    position: relative;
+    left: 150px;
 }
 
-.hide {
+/* .hide {
     visibility: hidden;
-}
+} */
 
 #container {
     width: fit-content;
 }
 
+#menu {
+    border: 1px solid rgb(255, 145, 145);
+    height: 35px;
+    position: relative;
+}
+
+#sort {
+    position: absolute;
+    left: 20px;
+    top: 20%;
+}
+
+#newToDo {
+    position: absolute;
+    top: 20%;
+    right: 20px;
+}
+
+
 .item {
-    border: 1px solid black;
+    border: 1px solid rgb(255, 145, 145);
     width: 200px;
     height: 50px;
+    position: relative;
+}
+
+.itemname {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 20px;
+    background-color: white;;
+    color: rgb(225, 138, 246)
+}
+
+.completebutton {
+    position: absolute;
+    right: 5px;
+    top: 25px;
+}
+
+.newTagButton {
+    position: absolute;
+    right: 5px;
+    top: 2px;
+}
+
+#formsubmit {
+    position: relative;
+    top: 8px;
+    border-radius: 20px;
 }

@@ -79,7 +79,7 @@ const userInterface = (() => {
 
     // when you click on any item, it should expand to show full details
     function expand(event) {
-        console.log(event)
+        console.log(event.target)
     }
 
     // when you click the button, the item should become 'complete'
@@ -102,13 +102,30 @@ const userInterface = (() => {
         item.addTag(newTag)
     }
 
+    // 
+    function createCompleteButton(carrier, item) {
+        let completeButton = document.createElement('button')
+        completeButton.textContent = '?'
+        completeButton.classList.add('completebutton')
+        completeButton.addEventListener('click', completeItem(carrier, item))
+        carrier.appendChild(completeButton);
+    }
+
     // there should be a button for adding new tags
     function createNewTagButton(carrier, item) {
         let newTagButton = document.createElement('button')
         newTagButton.textContent = '+'
-        newTagButton.id = 'newTagButton'
+        newTagButton.classList.add('newTagButton')
         newTagButton.addEventListener('click', createNewTag(item))
         carrier.appendChild(newTagButton)
+    }
+
+    function createItemName(carrier, item) {
+        let itemName = document.createElement('button')
+        itemName.textContent = item.title;
+        itemName.classList.add('itemname')
+        itemName.addEventListener('click', expand)
+        carrier.appendChild(itemName)   
     }
 
     // create item display
@@ -118,16 +135,10 @@ const userInterface = (() => {
         carrier.setAttribute('value', item.title);
         
         // add title
-        let itemName = document.createElement('button')
-        itemName.textContent = item.title;
-        itemName.addEventListener('click', expand)
-        carrier.appendChild(itemName)        
+        createItemName(carrier, item)
 
         // add button for completion
-        let completeButton = document.createElement('button')
-        completeButton.textContent = '?'
-        completeButton.addEventListener('click', completeItem(carrier, item))
-        carrier.appendChild(completeButton);
+        createCompleteButton(carrier, item)
 
         // add button for each tag 
         for (let tag of item.tags) {
