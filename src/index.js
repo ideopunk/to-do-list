@@ -53,9 +53,42 @@ todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
 
 const userInterface = (() => {
-    let container = document.querySelector('#container')
+    let containerList = document.querySelector('#containerList')
+
+    let topMenu = document.createElement('div');
+
+    // when you click on any item, it should expand to show full details
     function expand(event) {
-        console.log(event.path[0])
+        console.log(event)
+    }
+
+    // when you click the button, the item should become 'complete'
+    function completeItem(carrier, item) {
+        item.status = 'complete'
+    }
+
+    // there should be little buttons for each tag 
+    function createTagButton(tag, carrier) {
+        let tagButton = document.createElement('button')
+        tagButton.textContent = tag;
+        console.log('yo')
+        carrier.appendChild(tagButton);
+    }
+
+    // there should be a popup to write in a new tag
+    function createNewTag(item) {
+        let newTag = 'ye'
+        // let newTag = prompt("New tag");
+        item.addTag(newTag)
+    }
+
+    // there should be a button for adding new tags
+    function createNewTagButton(carrier, item) {
+        let newTagButton = document.createElement('button')
+        newTagButton.textContent = '+'
+        newTagButton.id = 'newTagButton'
+        newTagButton.addEventListener('click', createNewTag(item))
+        carrier.appendChild(newTagButton)
     }
 
     // create item display
@@ -64,8 +97,25 @@ const userInterface = (() => {
         carrier.classList.add('item');
         carrier.textContent = item.title;
         carrier.setAttribute('value', item.title);
-        carrier.addEventListener('click', expand);
-        container.appendChild(carrier);
+        // carrier.addEventListener('click', expand);
+
+        // add button for completion
+        let completeButton = document.createElement('button')
+        completeButton.addEventListener('click', completeItem(carrier, item))
+        carrier.appendChild(completeButton);
+
+        // add button for each tag 
+        console.log(item.tags)
+        for (tag in item.tags) {
+            console.log('ya')
+            createTagButton(tag, carrier)
+        }
+
+        // add button for adding new tags
+        createNewTagButton(carrier, item)
+
+
+        containerList.appendChild(carrier);
     }
 
     // initialize list
