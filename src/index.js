@@ -48,3 +48,27 @@ const todolist = (() => {
     return {list, addToList, deleteFromList, projectSort}
 })();
 
+todolist.addToList(todoitem('Walk dog', "Just around the block", "1pm", "ASAP"))
+todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
+
+
+const userInterface = (() => {
+    let container = document.querySelector('#container')
+    function expand(event) {
+        console.log(event)
+    }
+    function generate() {
+        for (let i = 0; i < todolist.list.length; i++) { 
+            let contents = todolist.list[i]
+            let item = document.createElement('div')
+            item.textContent = contents.title;
+            item.addEventListener('click', expand)
+
+            container.appendChild(item)
+        }
+    }
+
+    return { generate}
+})();
+
+userInterface.generate()
