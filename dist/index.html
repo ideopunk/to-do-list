@@ -1,16 +1,39 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>todo</title>
-    </head>
-    <body>
-        <div id='container'>
-            <div id='menu'>
-                <button id='sort'>Sort</button>
-                <button id='newToDo'>New</button>
-            </div>
-            <div id='containerList'></div>
+
+<head>
+    <title>todo</title>
+</head>
+
+<body>
+    <div id='container'>
+        <div id='menu'>
+            <button id='sort'>Sort</button>
+            <button id='newToDo'>New</button>
         </div>
-        <script src='main.js'></script>
-    </body>
+        <div id='containerList'></div>
+    </div>
+    <div id='newItemForm'>
+        <form>
+            <label for='title'>Title</label>
+            <input id='title' name='title'>
+
+            <label for='description'>Description</label>
+            <input id='description' name='description'>
+
+            <label for='dueDate'>Due Date</label>
+            <input id='dueDate' name='dueDate'>
+
+            <label for='priority'>Priority Level</label>
+            <input id='priority' name='priority'>
+
+            <label for='tags'>Tags</label>
+            <input id='tags' name='tags'>
+
+            <input type='submit'>
+        </form>
+    </div>
+    <script src='main.js'></script>
+</body>
+
 </html>

@@ -51,6 +51,15 @@ const todolist = (() => {
 todolist.addToList(todoitem('Walk dog', "Just around the block", "1pm", "ASAP"))
 todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
+const menuInterface = (() => {
+    function menuInterfaceGenerate() {
+        let sort = document.querySelector('#sort')
+        let newToDo = document.querySelector('#newToDo')
+        // sort.addEventListener('click', alert('yo'))
+        // newToDo.addEventListener('click', newToDo())
+    }
+    return { menuInterfaceGenerate}
+})();
 
 const userInterface = (() => {
     let containerList = document.querySelector('#containerList')
@@ -95,12 +104,17 @@ const userInterface = (() => {
     function displayItem(item) {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
-        carrier.textContent = item.title;
         carrier.setAttribute('value', item.title);
-        // carrier.addEventListener('click', expand);
+        
+        // add title
+        let itemName = document.createElement('button')
+        itemName.textContent = item.title;
+        itemName.addEventListener('click', expand)
+        carrier.appendChild(itemName)        
 
         // add button for completion
         let completeButton = document.createElement('button')
+        completeButton.textContent = '?'
         completeButton.addEventListener('click', completeItem(carrier, item))
         carrier.appendChild(completeButton);
 
@@ -128,4 +142,5 @@ const userInterface = (() => {
     return { generate}
 })();
 
+menuInterface.menuInterfaceGenerate()
 userInterface.generate()

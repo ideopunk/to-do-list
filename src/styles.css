@@ -8,6 +8,21 @@ p {
     color: red;
 }
 
+button {
+    background-color: pink;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+form {
+    display: grid;
+
+}
+
+#newItemForm {
+    visibility: hidden;
+}
+
 #container {
     width: fit-content;
 }
