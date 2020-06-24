@@ -2,7 +2,6 @@ import './styles.css';
 import todoitem from './todoitem.js'
 
 
-
 const todolist = (() => {
     const list = [];
     let projectSort = tag => {
@@ -37,10 +36,27 @@ todolist.addToList(todoitem('Walk dog', "Just around the block", "1pm", "ASAP"))
 todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
 const formInterface = (() => {
-    function generate() {
-        let formsubmit = document.querySelector('#formsubmit')
-        formsubmit.addEventListener('click', )
+    function addItem() {
+        console.log('form submitted')
+        let title = document.querySelector('#title')
+        let description = document.querySelector('#description')
+        let dueDate = document.querySelector('#dueDate')
+        let priority = document.querySelector('#priority')
+        let tags = document.querySelector('#tags')
+        let newItem = todoitem(title, description, dueDate, priority)
+        newItem.addTag(tags)
+        todolist.addToList(newItem)
+        console.log(todolist.list)
+        userInterface.generate()
     }
+    
+    function formgenerate() {
+        let formsubmit = document.querySelector('#formsubmit')
+        console.log('form generated')
+        formsubmit.addEventListener('click', addItem)
+    }
+
+    return { formgenerate, addItem }
 })();
 
 const menuInterface = (() => {
@@ -80,7 +96,7 @@ const userInterface = (() => {
     }
 
     // there should be a popup to write in a new tag
-    function createNewTag(item) {
+    const createNewTag = item => {
         let newTag = 'ye'
         // let newTag = prompt("New tag");
         item.addTag(newTag)
@@ -114,8 +130,7 @@ const userInterface = (() => {
         carrier.appendChild(completeButton);
 
         // add button for each tag 
-        console.log(item.tags)
-        for (tag in item.tags) {
+        for (let tag of item.tags) {
             console.log('ya')
             createTagButton(tag, carrier)
         }
@@ -137,5 +152,7 @@ const userInterface = (() => {
     return { generate}
 })();
 
+formInterface.formgenerate()
 menuInterface.menuInterfaceGenerate()
 userInterface.generate()
+console.log(todolist.list)

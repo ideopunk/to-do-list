@@ -14,7 +14,7 @@ button {
     border: 1px solid white;
 }
 
-form {
+#newItemForm {
     display: grid;
 
 }
