@@ -33,9 +33,9 @@ input {
     left: 150px;
 }
 
-/* .hide {
+.hide {
     visibility: hidden;
-} */
+}
 
 #container {
     width: fit-content;

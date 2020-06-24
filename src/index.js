@@ -47,6 +47,7 @@ const formInterface = (() => {
         newItem.addTag(tags)
         todolist.addToList(newItem)
         console.log(todolist.list)
+        toggleForm()
         userInterface.generate()
     }
     
@@ -56,20 +57,22 @@ const formInterface = (() => {
         formsubmit.addEventListener('click', addItem)
     }
 
-    return { formgenerate, addItem }
+    function toggleForm() {
+        let newItemForm = document.querySelector('#newItemForm')
+        newItemForm.classList.toggle('hide')
+    }
+
+    return { toggleForm, formgenerate, addItem }
 })();
 
 const menuInterface = (() => {
-    function showForm() {
-        let newItemForm = document.querySelector('#newItemForm')
-        newItemForm.classList.remove('hide')
-    }
+
 
     function menuInterfaceGenerate() {
         // let sort = document.querySelector('#sort');
         let newToDo = document.querySelector('#newToDo');
         // sort.addEventListener('click', alert('yo'))
-        newToDo.addEventListener('click', showForm)
+        newToDo.addEventListener('click', formInterface.toggleForm)
     }
     return { menuInterfaceGenerate}
 })();
