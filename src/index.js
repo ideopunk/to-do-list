@@ -55,16 +55,23 @@ todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 const userInterface = (() => {
     let container = document.querySelector('#container')
     function expand(event) {
-        console.log(event)
+        console.log(event.path[0])
     }
+
+    // create item display
+    function displayItem(item) {
+        let carrier = document.createElement('div');
+        carrier.classList.add('item');
+        carrier.textContent = item.title;
+        carrier.setAttribute('value', item.title);
+        carrier.addEventListener('click', expand);
+        container.appendChild(carrier);
+    }
+
+    // initialize list
     function generate() {
         for (let i = 0; i < todolist.list.length; i++) { 
-            let contents = todolist.list[i]
-            let item = document.createElement('div')
-            item.textContent = contents.title;
-            item.addEventListener('click', expand)
-
-            container.appendChild(item)
+            displayItem(todolist.list[i])
         }
     }
 
