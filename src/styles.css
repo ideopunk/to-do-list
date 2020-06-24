@@ -18,6 +18,9 @@ button {
 label {
     font-family: sans-serif;
     color: rgb(109, 46, 255);
+    position: absolute;
+    top: 6px;
+    left: 6px;
 }
 
 input {
@@ -25,25 +28,35 @@ input {
     margin-bottom: 5px;
     border: 1px solid pink;
     border-radius: 10px;
+    position: absolute;
+    right: 3px;
+}
+
+
+
+.bigboi {
+    background-color: rgb(255, 243, 243);
+    border: 1.5px solid rgb(255, 145, 145);
+    border-radius: 15px;
+    width: fit-content;
+    height: fit-content;
+}
+
+#container {
+    width: fit-content;
+    height: fit-content;
 }
 
 #newItemForm {
     display: grid;
     position: relative;
     left: 150px;
+    width: fit-content
 }
 
-.hide {
+/* .hide {
     visibility: hidden;
-}
-
-#container {
-    width: fit-content;
-    height: fit-content;
-    background-color: rgb(255, 243, 243);
-    border: 1.5px solid rgb(255, 145, 145);
-    border-radius: 15px;
-}
+} */
 
 #menu {
     height: 35px;
@@ -54,6 +67,13 @@ input {
     position: absolute;
     left: 20px;
     top: 20%;
+}
+
+.forminput {
+    width: 300px;
+    position: relative;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 #newToDo {
@@ -94,6 +114,9 @@ input {
 
 #formsubmit {
     position: relative;
-    top: 8px;
+    top: 5px;
     border-radius: 20px;
+    width: 90%;
+    left: 5%;
+    height: 25px;
 }
