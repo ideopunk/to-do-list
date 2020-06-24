@@ -11,7 +11,7 @@ p {
 button {
     background-color: pink;
     border-radius: 50%;
-    border: 1px solid white;
+    border: 1px solid rgb(255, 243, 243);;
     font-family: sans-serif;
 }
 
@@ -39,10 +39,13 @@ input {
 
 #container {
     width: fit-content;
+    height: fit-content;
+    background-color: rgb(255, 243, 243);
+    border: 1.5px solid rgb(255, 145, 145);
+    border-radius: 15px;
 }
 
 #menu {
-    border: 1px solid rgb(255, 145, 145);
     height: 35px;
     position: relative;
 }
@@ -61,8 +64,8 @@ input {
 
 
 .item {
-    border: 1px solid rgb(255, 145, 145);
-    width: 200px;
+    border-top: 1px solid rgb(255, 145, 145);
+    width: 300px;
     height: 50px;
     position: relative;
 }
@@ -72,8 +75,9 @@ input {
     top: 5px;
     left: 5px;
     font-size: 20px;
-    background-color: white;;
-    color: rgb(225, 138, 246)
+    background-color: rgb(255, 243, 243);
+    color: rgb(225, 138, 246);
+    text-shadow: 10 10 10;
 }
 
 .completebutton {
