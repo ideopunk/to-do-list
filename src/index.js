@@ -52,25 +52,33 @@ const menuInterface = (() => {
 const userInterface = (() => {
     let containerList = document.querySelector('#containerList')
 
-    // when you click on any item, it should expand to show full details
-    function expand(event) {
-        console.log(event.target)
-    }
+    // used throughout to access todolist object
+    let grabItem = () => {
+        let itemcheck = event.target.parentNode.firstChild.textContent
+        let item;
 
-    // when you click the button, the item should become 'complete'
-    function completeItem() {
-        console.log('completeItem')
-        let item = this.parentNode.firstChild.textContent;
-        console.log(item)
         for (let i = 0; i < todolist.list.length; i++) {
             let potentialItem = todolist.list[i]
-            if (potentialItem.title === item) {
+            if (potentialItem.title === itemcheck) {
                 item = potentialItem;
-                console.log('woo!')
                 break;
             }
         }
+
+        return item;
+    }
+
+    // when you click on any item, it should expand to show full details
+    function expand() {
+        console.log(grabItem())
+    }
+
+    // when you click the button, the item should become 'complete'
+    let completeItem = () => {
+        console.log('completeItem')
+        let item = grabItem()
         item.status = 'complete'
+        console.log('completed!')
     };
 
     // there should be little buttons for each tag 
@@ -85,23 +93,13 @@ const userInterface = (() => {
     function createNewTag() {
         console.log(this)
         console.log(this.parentNode)
-        let item = this.parentNode.firstChild.textContent
-        console.log(item)
-        for (let i = 0; i < todolist.list.length; i++) {
-            let potentialItem = todolist.list[i]
-            if (potentialItem.title === item) {
-                item = potentialItem;
-                console.log('aye')
-                break;
-            }
-        }
-        console.log(item)
+        let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
     };
 
     // 
-    function createCompleteButton(carrier, item) {
+    let createCompleteButton = (carrier, item) => {
         let completeButton = document.createElement('button')
         completeButton.textContent = '?'
         completeButton.classList.add('completebutton')
@@ -128,7 +126,7 @@ const userInterface = (() => {
     }
 
     // create item display
-    function displayItem(item) {
+    const displayItem = (item) => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
         carrier.setAttribute('value', item.title);
@@ -154,7 +152,7 @@ const userInterface = (() => {
     }
 
     // initialize list
-    function generate() {
+    const generate = () => {
         containerList.textContent = ''
         for (let i = 0; i < todolist.list.length; i++) { 
             displayItem(todolist.list[i])
