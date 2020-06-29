@@ -4,6 +4,7 @@ import todolist from './todolist.js'
 
 let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "ASAP")
 dogtask.addTag('Exercise')
+dogtask.addTag('Pets')
 todolist.addToList(dogtask)
 todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
@@ -85,12 +86,13 @@ const userInterface = (() => {
     };
 
     // there should be little buttons for each tag 
-    function createTagButton(tag, carrier) {
+    function createTagButton(tag, tagCarrier) {
         let tagButton = document.createElement('button')
         tagButton.classList.add('tagButton')
         tagButton.textContent = tag;
+        // tagButton.addEventListener('click', )
         console.log('yo')
-        carrier.appendChild(tagButton);
+        tagCarrier.appendChild(tagButton);
     };
 
     // there should be a popup to write in a new tag
@@ -102,7 +104,8 @@ const userInterface = (() => {
         item.addTag(newTag)
         console.log("parent: " + event.target.parentNode)
         let carrier = event.target.parentNode;
-        createTagButton(newTag, carrier)
+        let tagCarrier = carrier.childNodes[2]
+        createTagButton(newTag, tagCarrier)
     };
 
     // 
@@ -145,13 +148,13 @@ const userInterface = (() => {
         createCompleteButton(carrier, item)
 
         // add button for each tag 
-        console.log('why')
+        let tagCarrier = document.createElement('div')
+        tagCarrier.classList.add('tagCarrier')
         for (let tag of item.tags) {
             console.log('ya')
-            createTagButton(tag, carrier)
+            createTagButton(tag, tagCarrier)
         }
-        console.log('yhw')
-
+        carrier.appendChild(tagCarrier)
         // add button for adding new tags
         createNewTagButton(carrier, item)
 

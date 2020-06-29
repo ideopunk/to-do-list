@@ -120,9 +120,13 @@ input {
     top: 2px;
 }
 
-.tagButton {
+.tagCarrier {
+    display: flex;
     position: absolute;
     bottom: 2px;
     left: 7px;
+}
+
+.tagButton {
     font-size: 11px;
 }
