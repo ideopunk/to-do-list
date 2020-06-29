@@ -8,23 +8,21 @@ todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
 
 const formInterface = (() => {
     function addItem() {
-        console.log('form submitted')
-        let title = document.querySelector('#title')
-        let description = document.querySelector('#description')
-        let dueDate = document.querySelector('#dueDate')
-        let priority = document.querySelector('#priority')
-        let tags = document.querySelector('#tags')
+        console.log('formadditem')
+        let title = document.querySelector('#title').value
+        let description = document.querySelector('#description').value
+        let dueDate = document.querySelector('#dueDate').value
+        let priority = document.querySelector('#priority').value
+        let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
         newItem.addTag(tags)
         todolist.addToList(newItem)
-        console.log(todolist.list)
         toggleForm()
         userInterface.generate()
     }
     
     function formgenerate() {
         let formsubmit = document.querySelector('#formsubmit')
-        console.log('form generated')
         formsubmit.addEventListener('click', addItem)
     }
 
@@ -36,9 +34,9 @@ const formInterface = (() => {
     return { toggleForm, formgenerate, addItem }
 })();
 
+
+
 const menuInterface = (() => {
-
-
     function menuInterfaceGenerate() {
         // let sort = document.querySelector('#sort');
         let newToDo = document.querySelector('#newToDo');
@@ -47,6 +45,9 @@ const menuInterface = (() => {
     }
     return { menuInterfaceGenerate}
 })();
+
+
+
 
 const userInterface = (() => {
     let containerList = document.querySelector('#containerList')
@@ -57,9 +58,20 @@ const userInterface = (() => {
     }
 
     // when you click the button, the item should become 'complete'
-    function completeItem(carrier, item) {
+    function completeItem() {
+        console.log('completeItem')
+        let item = this.parentNode.firstChild.textContent;
+        console.log(item)
+        for (let i = 0; i < todolist.list.length; i++) {
+            let potentialItem = todolist.list[i]
+            if (potentialItem.title === item) {
+                item = potentialItem;
+                console.log('woo!')
+                break;
+            }
+        }
         item.status = 'complete'
-    }
+    };
 
     // there should be little buttons for each tag 
     function createTagButton(tag, carrier) {
@@ -67,21 +79,33 @@ const userInterface = (() => {
         tagButton.textContent = tag;
         console.log('yo')
         carrier.appendChild(tagButton);
-    }
+    };
 
     // there should be a popup to write in a new tag
-    const createNewTag = item => {
-        let newTag = 'ye'
-        // let newTag = prompt("New tag");
+    function createNewTag() {
+        console.log(this)
+        console.log(this.parentNode)
+        let item = this.parentNode.firstChild.textContent
+        console.log(item)
+        for (let i = 0; i < todolist.list.length; i++) {
+            let potentialItem = todolist.list[i]
+            if (potentialItem.title === item) {
+                item = potentialItem;
+                console.log('aye')
+                break;
+            }
+        }
+        console.log(item)
+        let newTag = prompt("New tag");
         item.addTag(newTag)
-    }
+    };
 
     // 
     function createCompleteButton(carrier, item) {
         let completeButton = document.createElement('button')
         completeButton.textContent = '?'
         completeButton.classList.add('completebutton')
-        completeButton.addEventListener('click', completeItem(carrier, item))
+        completeButton.addEventListener('click', completeItem)
         carrier.appendChild(completeButton);
     }
 
@@ -90,7 +114,8 @@ const userInterface = (() => {
         let newTagButton = document.createElement('button')
         newTagButton.textContent = '+'
         newTagButton.classList.add('newTagButton')
-        newTagButton.addEventListener('click', createNewTag(item))
+        console.log('CNB')
+        newTagButton.addEventListener('click', createNewTag)
         carrier.appendChild(newTagButton)
     }
 
@@ -115,14 +140,15 @@ const userInterface = (() => {
         createCompleteButton(carrier, item)
 
         // add button for each tag 
+        console.log('why')
         for (let tag of item.tags) {
             console.log('ya')
             createTagButton(tag, carrier)
         }
+        console.log('yhw')
 
         // add button for adding new tags
         createNewTagButton(carrier, item)
-
 
         containerList.appendChild(carrier);
     }
