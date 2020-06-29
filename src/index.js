@@ -158,6 +158,7 @@ const userInterface = (() => {
 
     // initialize list
     function generate() {
+        containerList.textContent = ''
         for (let i = 0; i < todolist.list.length; i++) { 
             displayItem(todolist.list[i])
         }
