@@ -2,9 +2,12 @@ import './styles.css';
 import todoitem from './todoitem.js'
 import todolist from './todolist.js'
 
-
-todolist.addToList(todoitem('Walk dog', "Just around the block", "1pm", "ASAP"))
+let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "ASAP")
+dogtask.addTag('Exercise')
+todolist.addToList(dogtask)
 todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
+
+
 
 const formInterface = (() => {
     function addItem() {
@@ -84,6 +87,7 @@ const userInterface = (() => {
     // there should be little buttons for each tag 
     function createTagButton(tag, carrier) {
         let tagButton = document.createElement('button')
+        tagButton.classList.add('tagButton')
         tagButton.textContent = tag;
         console.log('yo')
         carrier.appendChild(tagButton);
@@ -96,6 +100,9 @@ const userInterface = (() => {
         let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
+        console.log("parent: " + event.target.parentNode)
+        let carrier = event.target.parentNode;
+        createTagButton(newTag, carrier)
     };
 
     // 
