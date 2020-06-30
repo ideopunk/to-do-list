@@ -59,9 +59,10 @@ const userInterface = (() => {
     // used throughout to access todolist object
     let grabItem = () => {
         let itemcheck = event.target.parentNode.firstChild.textContent
-        let item;
+        console.log(itemcheck)
+        let item, i;
 
-        for (let i = 0; i < todolist.list.length; i++) {
+        for (i = 0; i < todolist.list.length; i++) {
             let potentialItem = todolist.list[i]
             if (potentialItem.title === itemcheck) {
                 item = potentialItem;
@@ -85,12 +86,27 @@ const userInterface = (() => {
         console.log('completed!')
     };
 
+    // the tag buttons should be deletable
+    function deleteTag() {
+        let tag = event.target;
+        console.log('tryna delete')
+        let itemcheck = tag.parentNode.parentNode.firstChild.textContent;
+        for (let i = 0; i < todolist.list.length; i++) {
+            if (todolist.list[i].title === itemcheck) {
+                todolist.list[i].deleteTag(tag.textContent)
+                console.log(todolist.list[i].tags)
+                break;
+            }
+        }
+        tag.parentNode.removeChild(tag)
+    }
+
     // there should be little buttons for each tag 
     function createTagButton(tag, tagCarrier) {
         let tagButton = document.createElement('button')
         tagButton.classList.add('tagButton')
         tagButton.textContent = tag;
-        // tagButton.addEventListener('click', )
+        tagButton.addEventListener('dblclick', deleteTag)
         console.log('yo')
         tagCarrier.appendChild(tagButton);
     };
