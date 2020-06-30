@@ -7,7 +7,7 @@
 
 <body>
     <!-- <div class='bigboi' id='sortForm'></div> -->
-    
+
     <div id='container' class='bigboi'>
         <div id='menu'>
             <button id='sort'>Sort</button>
@@ -21,17 +21,21 @@
             <label class='formlabel' for='title'>Title</label>
             <input id='title' name='title'>
         </div>
-        <div class='forminput'>
+        <div class='description forminput'>
             <label class='formlabel' for='description'>Description</label>
             <input id='description' name='description'>
         </div>
         <div class='forminput'>
             <label class='formlabel' for='dueDate'>Due Date</label>
-            <input id='dueDate' name='dueDate'>
+            <input id='dueDate' type='date' name='dueDate'>
         </div>
         <div class='forminput'>
             <label class='formlabel' for='priority'>Priority Level</label>
-            <input id='priority' name='priority'>
+            <select id='priority'>
+                <option value="High">High</option>
+                <option value="Mid">Mid</option>
+                <option value="Low">Low</option>
+            </select>
         </div>
         <div class='forminput'>
             <label class='formlabel' for='tags'>Tags</label>
