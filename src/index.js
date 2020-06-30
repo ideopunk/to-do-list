@@ -1,14 +1,31 @@
 import './styles.css';
-import todoitem from './todoitem.js'
+import {todoitem, tagList} from './todoitem.js'
 import todolist from './todolist.js'
 
 let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "Low")
+let lotteryTask = todoitem('Win lottery', "Powerball", "2021", "Low")
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
 todolist.addToList(dogtask)
-todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "Low"))
+todolist.addToList(lotteryTask)
 
+const sorter = (() => {
 
+    function sortGenerate() {
+        let sortForm = document.querySelector('#sortForm')
+        sortForm.textContent = ''
+        for (let elem of tagList.list) {
+            console.log(elem)
+            let tagLine = document.createElement('button')
+            tagLine.classList.add('tagLine');
+            tagLine.value = elem.name;
+            tagLine.textContent = elem.name;
+            sortForm.appendChild(tagLine)
+        }
+    }
+
+    return { sortGenerate }
+})();
 
 const formInterface = (() => {
     function addItem() {
@@ -20,6 +37,7 @@ const formInterface = (() => {
         let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
         newItem.addTag(tags)
+        sorter.sortGenerate();
         todolist.addToList(newItem)
         toggleForm()
         document.querySelector('#title').value = ''
@@ -64,7 +82,6 @@ const userInterface = (() => {
     // used throughout to access todolist object
     let grabItem = () => {
         let itemcheck = event.target.parentNode.firstChild.textContent
-        console.log(itemcheck)
         let item, i;
 
         for (i = 0; i < todolist.list.length; i++) {
@@ -113,7 +130,6 @@ const userInterface = (() => {
         tagButton.textContent = tag;
         tagButton.addEventListener('click', sortGenerate)
         tagButton.addEventListener('dblclick', deleteTag)
-        console.log('yo')
         tagCarrier.appendChild(tagButton);
     };
 
@@ -124,6 +140,7 @@ const userInterface = (() => {
         let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
+        sorter.sortGenerate() // wy are you generating so much? 
         console.log("parent: " + event.target.parentNode)
         let carrier = event.target.parentNode;
         let tagCarrier = carrier.childNodes[2]
@@ -144,7 +161,6 @@ const userInterface = (() => {
         let newTagButton = document.createElement('button')
         newTagButton.textContent = '+'
         newTagButton.classList.add('newTagButton')
-        console.log('CNB')
         newTagButton.addEventListener('click', createNewTag)
         carrier.appendChild(newTagButton)
     }
@@ -173,7 +189,6 @@ const userInterface = (() => {
         let tagCarrier = document.createElement('div')
         tagCarrier.classList.add('tagCarrier')
         for (let tag of item.tags) {
-            console.log('ya')
             createTagButton(tag, tagCarrier)
         }
         carrier.appendChild(tagCarrier)
@@ -204,7 +219,10 @@ const userInterface = (() => {
     return { generate}
 })();
 
+sorter.sortGenerate();
 formInterface.formgenerate()
 menuInterface.menuInterfaceGenerate()
 userInterface.generate()
 console.log(todolist.list)
+console.log("taglist: ")
+console.log(tagList.list)

@@ -37,6 +37,20 @@ input, select {
 
 /* sort guys */
 
+#sortForm {
+    display: grid;
+    position: relative;
+    width: 150px;
+    left: -100px;
+}
+
+.tagLine {
+    width: 100px;
+    position: relative;
+    margin-top: 7px;
+    margin-bottom: 7px;
+}
+
 /* form guys */
 
 #newItemForm {
