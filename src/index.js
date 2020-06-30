@@ -66,9 +66,9 @@ const formInterface = (() => {
 
 const menuInterface = (() => {
     function menuInterfaceGenerate() {
-        // let sort = document.querySelector('#sort');
+        let clear = document.querySelector('#clear');
         let newToDo = document.querySelector('#newToDo');
-        // sort.addEventListener('click', alert('yo'))
+        clear.addEventListener('click', userInterface.generate)
         newToDo.addEventListener('click', formInterface.toggleForm)
     }
     return { menuInterfaceGenerate}
