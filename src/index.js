@@ -37,9 +37,17 @@ const formInterface = (() => {
         let priority = document.querySelector('#priority').value
         let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
-        newItem.addTag(tags)
-        sorter.generateFilterList();
-        todolist.addToList(newItem)
+        if (tags === true) {
+            newItem.addTag(tags)
+            sorter.generateFilterList();
+        }
+        
+        if (title.length > 0) {
+            todolist.addToList(newItem)
+        }
+        else {
+            alert('Title is required')
+        }
         toggleForm()
         document.querySelector('#title').value = ''
         document.querySelector('#description').value = ''
@@ -204,7 +212,7 @@ const userInterface = (() => {
         event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
         
         let tags = []
-        let tagelems = document.querySelectorAll('.sortingtag')
+        let tagelems = document.querySelectorAll('.sortingtag') // aw shit.
         tagelems.forEach((tag) => {
             tags.push(tag.textContent)
         })
