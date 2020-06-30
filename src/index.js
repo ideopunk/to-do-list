@@ -11,8 +11,8 @@ todolist.addToList(lotteryTask)
 
 const sorter = (() => {
 
-    function sortGenerate() {
-        let sortForm = document.querySelector('#sortForm')
+    function generateFilterList() {
+        let sortForm = document.querySelector('#sortList')
         sortForm.textContent = ''
         for (let elem of tagList.list) {
             console.log(elem)
@@ -20,11 +20,12 @@ const sorter = (() => {
             tagLine.classList.add('tagLine');
             tagLine.value = elem.name;
             tagLine.textContent = elem.name;
+            tagLine.addEventListener('click', userInterface.sortGenerate)
             sortForm.appendChild(tagLine)
         }
     }
 
-    return { sortGenerate }
+    return { generateFilterList }
 })();
 
 const formInterface = (() => {
@@ -37,7 +38,7 @@ const formInterface = (() => {
         let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
         newItem.addTag(tags)
-        sorter.sortGenerate();
+        sorter.generateFilterList();
         todolist.addToList(newItem)
         toggleForm()
         document.querySelector('#title').value = ''
@@ -116,7 +117,7 @@ const userInterface = (() => {
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].title === itemcheck) {
                 todolist.list[i].deleteTag(tag.textContent)
-                console.log(todolist.list[i].tags)
+                sorter.generateFilterList() // is this working? ....deleteTag isn't doing what we love. 
                 break;
             }
         }
@@ -140,7 +141,7 @@ const userInterface = (() => {
         let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
-        sorter.sortGenerate() // wy are you generating so much? 
+        sorter.generateFilterList() 
         console.log("parent: " + event.target.parentNode)
         let carrier = event.target.parentNode;
         let tagCarrier = carrier.childNodes[2]
@@ -216,10 +217,10 @@ const userInterface = (() => {
         }
     }
 
-    return { generate}
+    return { sortGenerate, generate}
 })();
 
-sorter.sortGenerate();
+sorter.generateFilterList();
 formInterface.formgenerate()
 menuInterface.menuInterfaceGenerate()
 userInterface.generate()

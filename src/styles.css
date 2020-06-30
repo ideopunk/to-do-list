@@ -1,11 +1,14 @@
 body {
     font-family: 'Times New Roman', Times, serif;
     display: flex;
-    justify-content: center;
+    /* justify-content: center; */
+    margin: 0px;
+    margin-top: 15px;
 }
 
 p {
-    color: red;
+    color: fuchsia;
+    text-align: center;
 }
 
 button {
@@ -41,12 +44,15 @@ input, select {
     display: grid;
     position: relative;
     width: 150px;
-    left: -100px;
+    border-radius: 0px;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 }
 
 .tagLine {
     width: 100px;
     position: relative;
+    left: 20%;
     margin-top: 7px;
     margin-bottom: 7px;
 }
@@ -56,8 +62,8 @@ input, select {
 #newItemForm {
     display: grid;
     position: relative;
-    left: 150px;
-    width: fit-content
+    left: 500px;
+    width: fit-content;
 }
 
 .formlabel {
@@ -71,10 +77,10 @@ input, select {
 /* #description {
     height: 50px;
 } */
-
-.hide {
-    visibility: hidden;
-}
+    /* 
+    .hide {
+        visibility: hidden;
+    } */
 
 .forminput {
     width: 300px;
@@ -93,6 +99,11 @@ input, select {
 }
 
 /* central container guys */
+
+#container {
+    position: relative;
+    left: 250px;
+}
 
 #menu {
     height: 35px;
