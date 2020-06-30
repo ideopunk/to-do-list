@@ -203,7 +203,7 @@ const userInterface = (() => {
     // 
     let createCompleteButton = (carrier, item) => {
         let completeButton = document.createElement('button')
-        completeButton.textContent = '?'
+        completeButton.textContent = '√'
         completeButton.classList.add('completebutton')
         completeButton.addEventListener('click', completeItem)
         carrier.appendChild(completeButton);
@@ -212,7 +212,7 @@ const userInterface = (() => {
     // there should be a button for adding new tags
     function createNewTagButton(carrier, item) {
         let newTagButton = document.createElement('button')
-        newTagButton.textContent = '+'
+        newTagButton.textContent = 'x'
         newTagButton.classList.add('newTagButton')
         newTagButton.addEventListener('click', createNewTag)
         carrier.appendChild(newTagButton)
@@ -292,7 +292,26 @@ const userInterface = (() => {
     return { sortGenerate, generate}
 })();
 
-sorter.generateFilterList();
-formInterface.formgenerate()
-menuInterface.menuInterfaceGenerate()
-userInterface.generate()
+const completedInterface = (() => {
+    /// no, this should be a class kind of thing. 
+    let completedList = document.querySelector('#completedList')
+    const generate = () => {
+
+    }
+    return { generate }
+});
+
+const controller = (() => {
+    // this will trigger all the generations
+    const generate = () => {
+        sorter.generateFilterList();
+        formInterface.formgenerate()
+        menuInterface.menuInterfaceGenerate()
+        userInterface.generate()
+    }
+    return { generate }
+})();
+
+
+
+controller.generate()
