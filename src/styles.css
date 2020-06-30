@@ -171,3 +171,22 @@ input, select {
 .tagButton {
     font-size: 11px;
 }
+
+.bonus {
+    position: absolute;
+}
+
+.description {
+    top: 25px;
+    left: 8px;
+}
+
+.dueDate {
+    bottom: 25px;
+    right: 5px;
+}
+
+.priority {
+    right: 5px;
+    bottom: 5px;
+}

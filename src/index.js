@@ -115,12 +115,15 @@ const userInterface = (() => {
             console.log('ya')
             let description = document.createElement('p')
             description.textContent = item.description;
-    
+            description.classList.add('description');
+
             let dueDate = document.createElement('div');
             dueDate.textContent = item.dueDate;
+            dueDate.classList.add('dueDate')
 
             let priority = document.createElement('div')
             priority.textContent = item.priority;
+            priority.classList.add('priority')
 
             let props = [description, dueDate, priority];
             
