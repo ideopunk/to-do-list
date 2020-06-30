@@ -2,8 +2,8 @@ import './styles.css';
 import {todoitem, tagList} from './todoitem.js'
 import todolist from './todolist.js'
 
-let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "Low")
-let lotteryTask = todoitem('Win lottery', "Powerball", "2021", "Mid")
+let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
+let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
 todolist.addToList(dogtask)
