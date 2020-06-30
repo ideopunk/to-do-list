@@ -15,15 +15,9 @@ button {
     font-family: sans-serif;
 }
 
-.formlabel {
-    font-family: sans-serif;
-    color: rgb(109, 46, 255);
-    position: absolute;
-    top: 6px;
-    left: 6px;
-}
 
-input {
+
+input, select {
     margin-top: 5px;
     margin-bottom: 5px;
     border: 1px solid pink;
@@ -51,6 +45,18 @@ input {
     left: 150px;
     width: fit-content
 }
+
+.formlabel {
+    font-family: sans-serif;
+    color: rgb(109, 46, 255);
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+
+/* #description {
+    height: 50px;
+} */
 
 .hide {
     visibility: hidden;

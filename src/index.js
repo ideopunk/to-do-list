@@ -2,11 +2,11 @@ import './styles.css';
 import todoitem from './todoitem.js'
 import todolist from './todolist.js'
 
-let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "ASAP")
+let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "Low")
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
 todolist.addToList(dogtask)
-todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "ASAP"))
+todolist.addToList(todoitem('Win lottery', "Powerball", "2021", "Low"))
 
 
 
@@ -22,6 +22,11 @@ const formInterface = (() => {
         newItem.addTag(tags)
         todolist.addToList(newItem)
         toggleForm()
+        document.querySelector('#title').value = ''
+        document.querySelector('#description').value = ''
+        document.querySelector('#dueDate').value = ''
+        document.querySelector('#priority').value = 'Low'
+        document.querySelector('#tags').value = ''
         userInterface.generate()
     }
     
