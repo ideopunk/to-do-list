@@ -1,21 +1,41 @@
 const todolist = (() => {
     const list = [];
-    let projectSort = tag => {
-        let sortedList = list.filter(function(item) { // might need to be this.list.
-            let x = false;
-            for (let i = 0; i < item.tags.length; i++) {
-                if (item.tags[i] === tag) {
-                    x = true;
-                    break;
+    
+    let projectSort = (...tags) => {
+
+        // for each item...
+        let sortedList = list.filter(function(item) { 
+            
+            let x = 0;
+
+            // ...for each tag in the list...
+            for (let tag of tags) {
+                tag = String(tag)
+                
+                // ...see if it matches one of the item's tags
+                for (let i = 0; i < item.tags.length; i++) {
+                    if (item.tags[i] === tag) {
+                        x++;
+                        break;
+                    }
                 }
             }
-            return x;
+
+            let countReached = false;
+
+            if (x === tags.length) {
+                countReached = true;
+            }
+
+            return countReached;
         })
         return sortedList;
     }
+    
     let addToList = item => {
         list.push(item)
     }
+    
     let deleteFromList = item => {
         for (let i = 0; i < list.length; i++) {
             if (list[i] === list) {

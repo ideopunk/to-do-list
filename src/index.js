@@ -107,6 +107,7 @@ const userInterface = (() => {
         let item = grabItem()
         item.status = 'complete'
         console.log('completed!')
+        generate();
     };
 
     // the tag buttons should be deletable
@@ -200,9 +201,18 @@ const userInterface = (() => {
     }
 
     function sortGenerate() {
-        let tag = event.target.textContent;
+        event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
+        
+        let tags = []
+        let tagelems = document.querySelectorAll('.sortingtag')
+        tagelems.forEach((tag) => {
+            tags.push(tag.textContent)
+        })
+        
+        console.log('the tags: ' + tags);
+
         containerList.textContent = ''
-        let sortedList = todolist.projectSort(tag)
+        let sortedList = todolist.projectSort(tags)
         let i;
         for (i = 0; i < sortedList.length; i++) {
             displayItem(sortedList[i])
@@ -213,7 +223,9 @@ const userInterface = (() => {
     const generate = () => {
         containerList.textContent = ''
         for (let i = 0; i < todolist.list.length; i++) { 
-            displayItem(todolist.list[i])
+            if (todolist.list[i].status === 'incomplete') {
+                displayItem(todolist.list[i])
+            }
         }
     }
 
