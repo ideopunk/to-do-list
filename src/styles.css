@@ -135,6 +135,10 @@ input, select {
     position: relative;
 }
 
+.taller {
+    height: 120px;
+}
+
 .itemname {
     position: absolute;
     top: 5px;

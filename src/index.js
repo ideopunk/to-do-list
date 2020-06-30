@@ -15,7 +15,6 @@ const sorter = (() => {
         let sortForm = document.querySelector('#sortList')
         sortForm.textContent = ''
         for (let elem of tagList.list) {
-            console.log(elem)
             let tagLine = document.createElement('button')
             tagLine.classList.add('tagLine');
             tagLine.value = elem.name;
@@ -107,6 +106,47 @@ const userInterface = (() => {
     // when you click on any item, it should expand to show full details
     function expand() {
         console.log(grabItem())
+        let item = grabItem()
+        let carrier = event.target.parentNode;
+        carrier.classList.toggle('taller');
+        console.log(carrier.childNodes)
+        
+        if (carrier.classList.contains('taller')) {
+            console.log('ya')
+            let description = document.createElement('p')
+            description.textContent = item.description;
+    
+            let dueDate = document.createElement('div');
+            dueDate.textContent = item.dueDate;
+
+            let priority = document.createElement('div')
+            priority.textContent = item.priority;
+
+            let props = [description, dueDate, priority];
+            
+            for (let i = 0; i < props.length; i++) {
+                props[i].classList.add('bonus');
+                carrier.appendChild(props[i]);
+            };
+            
+
+            console.log('yo');
+            console.log(carrier.childNodes);
+
+        } else {
+            console.log(carrier.childNodes)
+            let len = carrier.childNodes.length;
+            for (let i = len - 1; i > 0; i--) {
+                console.log(i)
+                console.log(carrier.childNodes[i])
+                if (carrier.childNodes[i].classList.contains('bonus')) {
+                    console.log('removing: ' + carrier.childNodes[i])
+                    carrier.removeChild(carrier.childNodes[i])
+                }
+            }
+            console.log(carrier.childNodes)
+        }
+
     }
 
     // when you click the button, the item should become 'complete'
@@ -244,6 +284,3 @@ sorter.generateFilterList();
 formInterface.formgenerate()
 menuInterface.menuInterfaceGenerate()
 userInterface.generate()
-console.log(todolist.list)
-console.log("taglist: ")
-console.log(tagList.list)

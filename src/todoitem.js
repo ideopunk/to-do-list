@@ -4,7 +4,6 @@ const todoitem = (title, description, dueDate, priority) => {
     const status = "incomplete"
     let tags = []
     let addTag = (tag) => {
-        console.log('what')
         tags.push(tag);
         tagList.posUpdate(tag);
     }

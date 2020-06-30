@@ -12,7 +12,6 @@ const tagList = (() => {
     };
 
     function posUpdate(tag) {
-        console.log('posupdate')
         let x = 0;
         for (let elem of list) {
             if (elem.name === tag) {
