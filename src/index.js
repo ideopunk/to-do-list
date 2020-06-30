@@ -3,7 +3,7 @@ import {todoitem, tagList} from './todoitem.js'
 import todolist from './todolist.js'
 
 let dogtask = todoitem('Walk dog', "Just around the block", "1pm", "Low")
-let lotteryTask = todoitem('Win lottery', "Powerball", "2021", "Low")
+let lotteryTask = todoitem('Win lottery', "Powerball", "2021", "Mid")
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
 todolist.addToList(dogtask)
@@ -231,6 +231,15 @@ const userInterface = (() => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
         carrier.setAttribute('value', item.title);
+    
+        // colorize
+        if (item.priority === 'Low') {
+            carrier.classList.add('Low')
+        } else if (item.priority === 'Mid') {
+            carrier.classList.add('Mid')
+        } else {
+            carrier.classList.add('High')
+        }
         
         // add title
         createItemName(carrier, item)
