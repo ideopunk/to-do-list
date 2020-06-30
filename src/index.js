@@ -111,6 +111,7 @@ const userInterface = (() => {
         let tagButton = document.createElement('button')
         tagButton.classList.add('tagButton')
         tagButton.textContent = tag;
+        tagButton.addEventListener('click', sortGenerate)
         tagButton.addEventListener('dblclick', deleteTag)
         console.log('yo')
         tagCarrier.appendChild(tagButton);
@@ -180,6 +181,16 @@ const userInterface = (() => {
         createNewTagButton(carrier, item)
 
         containerList.appendChild(carrier);
+    }
+
+    function sortGenerate() {
+        let tag = event.target.textContent;
+        containerList.textContent = ''
+        let sortedList = todolist.projectSort(tag)
+        let i;
+        for (i = 0; i < sortedList.length; i++) {
+            displayItem(sortedList[i])
+        }
     }
 
     // initialize list

@@ -1,7 +1,7 @@
 const todolist = (() => {
     const list = [];
     let projectSort = tag => {
-        let sortedList = list.filter(function(item) {
+        let sortedList = list.filter(function(item) { // might need to be this.list.
             let x = false;
             for (let i = 0; i < item.tags.length; i++) {
                 if (item.tags[i] === tag) {
