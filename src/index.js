@@ -1,5 +1,5 @@
 import './styles.css';
-import { todoitem, tagList } from './todoitem.js'
+import { todoitem } from './todoitem.js'
 import todolist from './todolist.js'
 
 // testers
@@ -26,11 +26,23 @@ const sorter = (() => {
         const sortTop = document.querySelector('#sorttop')
         sortTop.addEventListener('click', selectorController.filterToggle)
         sortForm.textContent = ''
-        for (let elem of tagList.list) {
+
+        let tagList = []
+        let potentialTags = document.querySelectorAll('.tagButton')
+        console.log('potential tags: ')
+        console.log(potentialTags)
+        potentialTags.forEach((tag) => {
+            tagList.push(tag.textContent)
+        });
+
+        tagList = [...new Set(tagList)];
+
+        console.log(tagList)
+        for (let elem of tagList) {
             let tagLine = document.createElement('button')
             tagLine.classList.add('tagLine');
-            tagLine.value = elem.name;
-            tagLine.textContent = elem.name;
+            tagLine.value = elem;
+            tagLine.textContent = elem;
             tagLine.addEventListener('click', mainInterface.sortGenerate)
             sortForm.appendChild(tagLine)
         }
@@ -48,7 +60,7 @@ const formInterface = (() => {
         let priority = document.querySelector('#priority').value
         let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
-        if (tags === true) {
+        if (tags.length > 0) {
             newItem.addTag(tags)
             sorter.generateFilterList();
         }
@@ -86,7 +98,6 @@ const formInterface = (() => {
 const menuInterface = (() => {
     function menuInterfaceGenerate() {
         let clear = document.querySelector('#clear');
-        let newToDo = document.querySelector('#newToDo');
         clear.addEventListener('click', mainInterface.generate)
     }
     return { menuInterfaceGenerate }
@@ -176,14 +187,16 @@ const userInterface = (containerListName, itemStatus) => {
         let tag = event.target;
         console.log('tryna delete')
         let itemcheck = tag.parentNode.parentNode.firstChild.textContent;
+        tag.parentNode.removeChild(tag)
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].title === itemcheck) {
                 todolist.list[i].deleteTag(tag.textContent)
                 sorter.generateFilterList() // is this working? ....deleteTag isn't doing what we love. 
+                console.log('delete!')
                 break;
             }
         }
-        tag.parentNode.removeChild(tag)
+        
     }
 
     // there should be little buttons for each tag 
@@ -271,7 +284,7 @@ const userInterface = (containerListName, itemStatus) => {
     }
 
     // CI will not need sortGenerate
-    function sortGenerate() { // the current problem is if there is only one button, you can't unselect it. 
+    function sortGenerate() { 
         console.log('event.target: ')
         console.log(event.target)
 
@@ -398,10 +411,10 @@ const controller = (() => {
 
     // this will trigger all the generations
     const generate = () => {
-        sorter.generateFilterList();
         formInterface.formgenerate();
         menuInterface.menuInterfaceGenerate();
         listgenerate();
+        sorter.generateFilterList();
         selectorController.generate();
     }
     return { generate, listgenerate }
