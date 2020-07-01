@@ -112,7 +112,7 @@ input, select {
     left: 250px;
 }
 
-#menu {
+.menu {
     height: 35px;
     position: relative;
     background-color: rgb(255, 250, 250);
@@ -205,4 +205,25 @@ input, select {
 
 .High {
     background-color: rgb(255, 217, 217);
+}
+
+/* Completed List guys */
+
+#completedContainer {
+    position: absolute;
+    right: 0px;
+    top: 300px;
+    border-right: 0px solid white;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;
+    overflow: hidden;
+    border-top: 20px;
+}
+
+#returncompleted {
+    position: absolute;
+    left: 25%;
+    width: 50%;
+    top: 20%;
+
 }

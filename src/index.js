@@ -1,13 +1,17 @@
 import './styles.css';
-import {todoitem, tagList} from './todoitem.js'
+import { todoitem, tagList } from './todoitem.js'
 import todolist from './todolist.js'
 
+// testers
 let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
 let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
+let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
+finishedTask.status = 'complete'
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
 todolist.addToList(dogtask)
 todolist.addToList(lotteryTask)
+todolist.addToList(finishedTask)
 
 const sorter = (() => {
 
@@ -40,7 +44,7 @@ const formInterface = (() => {
             newItem.addTag(tags)
             sorter.generateFilterList();
         }
-        
+
         if (title.length > 0) {
             todolist.addToList(newItem)
         }
@@ -55,7 +59,7 @@ const formInterface = (() => {
         document.querySelector('#tags').value = ''
         userInterface.generate()
     }
-    
+
     function formgenerate() {
         let formsubmit = document.querySelector('#formsubmit')
         formsubmit.addEventListener('click', addItem)
@@ -78,14 +82,14 @@ const menuInterface = (() => {
         clear.addEventListener('click', userInterface.generate)
         newToDo.addEventListener('click', formInterface.toggleForm)
     }
-    return { menuInterfaceGenerate}
+    return { menuInterfaceGenerate }
 })();
 
 
 
 
-const userInterface = (() => {
-    let containerList = document.querySelector('#containerList')
+const userInterface = (containerListName, itemStatus) => {
+    let containerList = document.querySelector(containerListName) 
 
     // used throughout to access todolist object
     let grabItem = () => {
@@ -110,7 +114,7 @@ const userInterface = (() => {
         let carrier = event.target.parentNode;
         carrier.classList.toggle('taller');
         console.log(carrier.childNodes)
-        
+
         if (carrier.classList.contains('taller')) {
             console.log('ya')
             let description = document.createElement('p')
@@ -126,12 +130,12 @@ const userInterface = (() => {
             priority.classList.add('priority')
 
             let props = [description, dueDate, priority];
-            
+
             for (let i = 0; i < props.length; i++) {
                 props[i].classList.add('bonus');
                 carrier.appendChild(props[i]);
             };
-            
+
 
             console.log('yo');
             console.log(carrier.childNodes);
@@ -153,12 +157,12 @@ const userInterface = (() => {
     }
 
     // when you click the button, the item should become 'complete'
-    let completeItem = () => {
+    let completeItem = () => { // CI will have to modify this / not use it. 
         console.log('completeItem')
         let item = grabItem()
         item.status = 'complete'
         console.log('completed!')
-        generate();
+        controller.listgenerate();
     };
 
     // the tag buttons should be deletable
@@ -193,7 +197,7 @@ const userInterface = (() => {
         let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
-        sorter.generateFilterList() 
+        sorter.generateFilterList()
         console.log("parent: " + event.target.parentNode)
         let carrier = event.target.parentNode;
         let tagCarrier = carrier.childNodes[2]
@@ -223,7 +227,7 @@ const userInterface = (() => {
         itemName.textContent = item.title;
         itemName.classList.add('itemname')
         itemName.addEventListener('click', expand)
-        carrier.appendChild(itemName)   
+        carrier.appendChild(itemName)
     }
 
     // create item display
@@ -231,7 +235,7 @@ const userInterface = (() => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
         carrier.setAttribute('value', item.title);
-    
+
         // colorize
         if (item.priority === 'Low') {
             carrier.classList.add('Low')
@@ -240,7 +244,7 @@ const userInterface = (() => {
         } else {
             carrier.classList.add('High')
         }
-        
+
         // add title
         createItemName(carrier, item)
 
@@ -260,15 +264,15 @@ const userInterface = (() => {
         containerList.appendChild(carrier);
     }
 
-    function sortGenerate() {
+    function sortGenerate() { // CI will not need sortGenerate
         event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
-        
+
         let tags = []
         let tagelems = document.querySelectorAll('.sortingtag') // aw shit.
         tagelems.forEach((tag) => {
             tags.push(tag.textContent)
         })
-        
+
         console.log('the tags: ' + tags);
 
         containerList.textContent = ''
@@ -282,34 +286,33 @@ const userInterface = (() => {
     // initialize list
     const generate = () => {
         containerList.textContent = ''
-        for (let i = 0; i < todolist.list.length; i++) { 
-            if (todolist.list[i].status === 'incomplete') {
+        for (let i = 0; i < todolist.list.length; i++) {
+            if (todolist.list[i].status === itemStatus) { // CI will need 'complete'
                 displayItem(todolist.list[i])
             }
         }
     }
 
-    return { sortGenerate, generate}
-})();
+    return { sortGenerate, generate }
+};
 
-const completedInterface = (() => {
-    /// no, this should be a class kind of thing. 
-    let completedList = document.querySelector('#completedList')
-    const generate = () => {
-
-    }
-    return { generate }
-});
+const mainInterface = userInterface('#containerList', 'incomplete');
+const completedInterface = userInterface('#completedList', 'complete');
 
 const controller = (() => {
+    const listgenerate = () => {
+        mainInterface.generate();
+        completedInterface.generate();
+    }
+    
     // this will trigger all the generations
     const generate = () => {
         sorter.generateFilterList();
         formInterface.formgenerate()
         menuInterface.menuInterfaceGenerate()
-        userInterface.generate()
+        listgenerate()
     }
-    return { generate }
+    return { generate, listgenerate }
 })();
 
 
