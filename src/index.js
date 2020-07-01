@@ -270,17 +270,26 @@ const userInterface = (containerListName, itemStatus) => {
         containerList.appendChild(carrier);
     }
 
-    function sortGenerate() { // CI will not need sortGenerate
+    // CI will not need sortGenerate
+    function sortGenerate() { // the current problem is if there is only one button, you can't unselect it. 
         console.log('event.target: ')
         console.log(event.target)
-        event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
+        event.target.classList.toggle('sortingtag')
 
         let tags = []
-        let tagelems = document.querySelectorAll('.sortingtag') // aw shit.
+        let tagelems = document.querySelectorAll('.sortingtag')
         console.log("tagelems: ")
         console.log(tagelems)
-        tagelems.forEach((tag) => {
-            tags.push(tag.textContent)
+        
+        let preUniqueTagElems = []
+        for (let i = 0; i < tagelems.length; i++) {
+            preUniqueTagElems.push(tagelems[i].textContent)
+        }
+        let uniqueTagElems = [...new Set(preUniqueTagElems)];
+        console.log('uniqueTagElems: ' + uniqueTagElems)
+
+        uniqueTagElems.forEach((tag) => {
+            tags.push(tag)
         })
 
         console.log('the tags: ' + tags);
@@ -293,10 +302,13 @@ const userInterface = (containerListName, itemStatus) => {
                 displayItem(sortedList[i])
             }
         }
-        
+
+
         let allTags = document.querySelectorAll('.tagButton')
-        tagelems.forEach((tag) => {
-            let thevalue = tag.textContent;
+
+        uniqueTagElems.forEach((tag) => {
+            let thevalue = tag;
+
             allTags.forEach((btntag) => {
                 if (btntag.textContent === thevalue) {
                     btntag.classList.toggle('sortingtag')
