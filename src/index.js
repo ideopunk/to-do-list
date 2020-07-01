@@ -16,14 +16,16 @@ todolist.addToList(finishedTask)
 const sorter = (() => {
 
     function generateFilterList() {
-        let sortForm = document.querySelector('#sortList')
+        const sortForm = document.querySelector('#sortList')
+        const sortTop = document.querySelector('#sorttop')
+        sortTop.addEventListener('click', selectorController.filterToggle)
         sortForm.textContent = ''
         for (let elem of tagList.list) {
             let tagLine = document.createElement('button')
             tagLine.classList.add('tagLine');
             tagLine.value = elem.name;
             tagLine.textContent = elem.name;
-            tagLine.addEventListener('click', userInterface.sortGenerate)
+            tagLine.addEventListener('click', mainInterface.sortGenerate)
             sortForm.appendChild(tagLine)
         }
     }
@@ -51,13 +53,13 @@ const formInterface = (() => {
         else {
             alert('Title is required')
         }
-        toggleForm()
+        selectorController.formToggle();
         document.querySelector('#title').value = ''
         document.querySelector('#description').value = ''
         document.querySelector('#dueDate').value = ''
         document.querySelector('#priority').value = 'Low'
         document.querySelector('#tags').value = ''
-        userInterface.generate()
+        mainInterface.generate()
     }
 
     function formgenerate() {
@@ -79,8 +81,7 @@ const menuInterface = (() => {
     function menuInterfaceGenerate() {
         let clear = document.querySelector('#clear');
         let newToDo = document.querySelector('#newToDo');
-        clear.addEventListener('click', userInterface.generate)
-        newToDo.addEventListener('click', formInterface.toggleForm)
+        clear.addEventListener('click', mainInterface.generate)
     }
     return { menuInterfaceGenerate }
 })();
@@ -89,7 +90,7 @@ const menuInterface = (() => {
 
 
 const userInterface = (containerListName, itemStatus) => {
-    let containerList = document.querySelector(containerListName) 
+    let containerList = document.querySelector(containerListName)
 
     // used throughout to access todolist object
     let grabItem = () => {
@@ -299,18 +300,54 @@ const userInterface = (containerListName, itemStatus) => {
 const mainInterface = userInterface('#containerList', 'incomplete');
 const completedInterface = userInterface('#completedList', 'complete');
 
+const selectorController = (() => {
+    const filterToggler = document.querySelector('#ex')
+    const filter = document.querySelector('#sortForm');
+
+    const formToggler = document.querySelector('#plus')
+    const form = document.querySelector('#newItemForm')
+
+    const completedToggler = document.querySelector('#checkmark')
+    const complete = document.querySelector('#completedContainer')
+
+
+    function filterToggle() {
+        filterToggler.classList.toggle('hide')
+        filter.classList.toggle('hide')
+    }
+
+    function formToggle() {
+        formToggler.classList.toggle('hide');
+        form.classList.toggle('hide')
+    }
+
+    function completeToggle() {
+        completedToggler.classList.toggle('hide');
+        complete.classList.toggle('hide');
+    }
+
+    const generate = () => {
+        filterToggler.addEventListener('click', filterToggle)
+        formToggler.addEventListener('click', formToggle)
+        completedToggler.addEventListener('click', completeToggle)
+    }
+
+    return { filterToggle, formToggle, completeToggle, generate }
+})();
+
 const controller = (() => {
     const listgenerate = () => {
         mainInterface.generate();
         completedInterface.generate();
     }
-    
+
     // this will trigger all the generations
     const generate = () => {
         sorter.generateFilterList();
-        formInterface.formgenerate()
-        menuInterface.menuInterfaceGenerate()
-        listgenerate()
+        formInterface.formgenerate();
+        menuInterface.menuInterfaceGenerate();
+        listgenerate();
+        selectorController.generate();
     }
     return { generate, listgenerate }
 })();

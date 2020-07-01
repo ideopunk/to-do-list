@@ -20,6 +20,10 @@ button {
 
 
 
+.hide {
+    visibility: hidden;
+}
+
 input, select {
     margin-top: 5px;
     margin-bottom: 5px;
@@ -89,10 +93,7 @@ input, select {
 /* #description {
     height: 50px;
 } */
-    /* 
-    .hide {
-        visibility: hidden;
-    } */
+    
 
 
 
@@ -226,4 +227,39 @@ input, select {
     width: 50%;
     top: 20%;
 
+}
+
+
+/* Selectors */
+
+#ex {
+    position: absolute;
+    left: 0px;
+    /* top: 200px; */
+    width: 40px;
+    border-left: 0px solid white;
+    border-top-left-radius: 0px;
+    border-bottom-left-radius: 0px;    
+}
+
+
+
+#plus {
+    position: absolute;
+    right: 0px;
+    /* bottom: 120px; */
+    width: 40px;
+    border-right: 0px solid white;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;    
+}
+
+#checkmark {
+    position: absolute;
+    right: 0px;
+    top: 300px;
+    width: 40px;
+    border-right: 0px solid white;
+    border-top-right-radius: 0px;
+    border-bottom-right-radius: 0px;    
 }
