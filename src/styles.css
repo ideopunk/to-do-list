@@ -217,7 +217,7 @@ input, select {
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
     overflow: hidden;
-    border-top: 20px;
+    /* border-top: 1.5px solid rgb(255, 145, 145); */
 }
 
 #returncompleted {
