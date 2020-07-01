@@ -274,29 +274,39 @@ const userInterface = (containerListName, itemStatus) => {
     function sortGenerate() { // the current problem is if there is only one button, you can't unselect it. 
         console.log('event.target: ')
         console.log(event.target)
+
         event.target.classList.toggle('sortingtag')
 
-        let tags = []
+        let i;
         let tagelems = document.querySelectorAll('.sortingtag')
         console.log("tagelems: ")
         console.log(tagelems)
         
         let preUniqueTagElems = []
-        for (let i = 0; i < tagelems.length; i++) {
+        for (i = 0; i < tagelems.length; i++) {
             preUniqueTagElems.push(tagelems[i].textContent)
         }
         let uniqueTagElems = [...new Set(preUniqueTagElems)];
+
+        console.log("event.target.textContent: " + event.target.textContent)
+
+        if (!event.target.classList.contains('sortingtag')) {
+            for (i = 0; i < uniqueTagElems.length; i++) {
+                console.log("uniquetagelem: " + uniqueTagElems[i])
+                if (event.target.textContent === uniqueTagElems[i]) {
+                    uniqueTagElems.splice(i, 1)
+                    console.log('zapped')
+                }
+            }
+        }
+
+
+
         console.log('uniqueTagElems: ' + uniqueTagElems)
 
-        uniqueTagElems.forEach((tag) => {
-            tags.push(tag)
-        })
-
-        console.log('the tags: ' + tags);
 
         containerList.textContent = ''
-        let sortedList = todolist.projectSort(tags)
-        let i;
+        let sortedList = todolist.projectSort(uniqueTagElems)
         for (i = 0; i < sortedList.length; i++) {
             if (todolist.list[i].status === itemStatus) {
                 displayItem(sortedList[i])
@@ -319,6 +329,14 @@ const userInterface = (containerListName, itemStatus) => {
 
         console.log("allTags: ")
         console.log(allTags)
+
+        let testTags = document.querySelectorAll('.tagButton')
+        for (let tag of testTags) {
+            if (tag.classList.contains('sortingtag')) {
+                console.log(tag)
+            }    
+        }
+        
     }
 
     // initialize list
