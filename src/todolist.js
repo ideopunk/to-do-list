@@ -3,6 +3,8 @@ const todolist = (() => {
     
     let projectSort = (...tags) => {
 
+        console.log("project sort tags: ")
+        console.log(tags)
         // for each item...
         let sortedList = list.filter(function(item) { 
             

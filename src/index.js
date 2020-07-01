@@ -5,13 +5,19 @@ import todolist from './todolist.js'
 // testers
 let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
 let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
+let bonusTask = todoitem('Go home', "Forever", "2022-07-11", "High");
 let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
+
 finishedTask.status = 'complete'
 dogtask.addTag('Exercise')
 dogtask.addTag('Pets')
+lotteryTask.addTag('Exercise')
+bonusTask.addTag('Pets')
+
 todolist.addToList(dogtask)
 todolist.addToList(lotteryTask)
 todolist.addToList(finishedTask)
+todolist.addToList(bonusTask)
 
 const sorter = (() => {
 
@@ -85,7 +91,6 @@ const menuInterface = (() => {
     }
     return { menuInterfaceGenerate }
 })();
-
 
 
 
@@ -187,7 +192,7 @@ const userInterface = (containerListName, itemStatus) => {
         tagButton.classList.add('tagButton')
         tagButton.textContent = tag;
         tagButton.addEventListener('click', sortGenerate)
-        tagButton.addEventListener('dblclick', deleteTag)
+        tagButton.addEventListener('contextmenu', deleteTag)
         tagCarrier.appendChild(tagButton);
     };
 
@@ -266,10 +271,13 @@ const userInterface = (containerListName, itemStatus) => {
     }
 
     function sortGenerate() { // CI will not need sortGenerate
+        console.log('event.target: ' + event.target.textContent)
         event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
 
         let tags = []
         let tagelems = document.querySelectorAll('.sortingtag') // aw shit.
+        console.log("tagelems: ")
+        console.log(tagelems)
         tagelems.forEach((tag) => {
             tags.push(tag.textContent)
         })
@@ -282,6 +290,19 @@ const userInterface = (containerListName, itemStatus) => {
         for (i = 0; i < sortedList.length; i++) {
             displayItem(sortedList[i])
         }
+        
+
+        tagelems.forEach((tag) => {
+            let thevalue = tag.textContent;
+            let allTags = document.querySelectorAll('.tagButton')
+            allTags.forEach((btntag) => {
+                if (btntag.textContent === thevalue) {
+                    btntag.classList.toggle('sortingtag')
+                }
+            })
+            // tag.classList.toggle('sortingtag');
+            console.log(tag)
+        })
     }
 
     // initialize list
