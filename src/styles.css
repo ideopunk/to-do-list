@@ -166,6 +166,10 @@ input, select {
     top: 2px;
 }
 
+.sortingtag {
+    border: 1px solid red;
+}
+
 .tagCarrier {
     display: flex;
     position: absolute;

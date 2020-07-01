@@ -15,7 +15,6 @@ const tagList = (() => {
         let x = 0;
         for (let elem of list) {
             if (elem.name === tag) {
-                console.log('countup')
                 elem.countup();
                 x = 1;
                 break;

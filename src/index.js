@@ -271,7 +271,8 @@ const userInterface = (containerListName, itemStatus) => {
     }
 
     function sortGenerate() { // CI will not need sortGenerate
-        console.log('event.target: ' + event.target.textContent)
+        console.log('event.target: ')
+        console.log(event.target)
         event.target.classList.toggle('sortingtag') // this gets wiped when displayItem is triggered
 
         let tags = []
@@ -288,21 +289,24 @@ const userInterface = (containerListName, itemStatus) => {
         let sortedList = todolist.projectSort(tags)
         let i;
         for (i = 0; i < sortedList.length; i++) {
-            displayItem(sortedList[i])
+            if (todolist.list[i].status === itemStatus) {
+                displayItem(sortedList[i])
+            }
         }
         
-
+        let allTags = document.querySelectorAll('.tagButton')
         tagelems.forEach((tag) => {
             let thevalue = tag.textContent;
-            let allTags = document.querySelectorAll('.tagButton')
             allTags.forEach((btntag) => {
                 if (btntag.textContent === thevalue) {
                     btntag.classList.toggle('sortingtag')
                 }
             })
-            // tag.classList.toggle('sortingtag');
             console.log(tag)
         })
+
+        console.log("allTags: ")
+        console.log(allTags)
     }
 
     // initialize list

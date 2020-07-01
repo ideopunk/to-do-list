@@ -1,8 +1,8 @@
 const todolist = (() => {
     const list = [];
     
-    let projectSort = (...tags) => {
-
+    let projectSort = (pretags) => {
+        let tags = [...new Set(pretags)];
         console.log("project sort tags: ")
         console.log(tags)
         // for each item...
