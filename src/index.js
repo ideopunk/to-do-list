@@ -19,6 +19,7 @@ todolist.addToList(lotteryTask)
 todolist.addToList(finishedTask)
 todolist.addToList(bonusTask)
 
+
 const sorter = (() => {
 
     function generateFilterList() {
@@ -285,38 +286,47 @@ const userInterface = (containerListName, itemStatus) => {
 
     // CI will not need sortGenerate
     function sortGenerate() { 
-        console.log('event.target: ')
-        console.log(event.target)
-
-        event.target.classList.toggle('sortingtag')
-
+        // event.target.classList.toggle('sortingtag')
+        console.log(event.target.textContent + 'ya')
         let i;
+
+        // get a unique list of all the active tags. 
         let tagelems = document.querySelectorAll('.sortingtag')
-        console.log("tagelems: ")
-        console.log(tagelems)
-        
         let preUniqueTagElems = []
         for (i = 0; i < tagelems.length; i++) {
             preUniqueTagElems.push(tagelems[i].textContent)
         }
+        
+        // preUniqueTagElems.push(event.target.textContent)
         let uniqueTagElems = [...new Set(preUniqueTagElems)];
 
-        console.log("event.target.textContent: " + event.target.textContent)
+        console.log('uniquetags1: ' + uniqueTagElems)
 
-        if (!event.target.classList.contains('sortingtag')) {
-            for (i = 0; i < uniqueTagElems.length; i++) {
-                console.log("uniquetagelem: " + uniqueTagElems[i])
-                if (event.target.textContent === uniqueTagElems[i]) {
-                    uniqueTagElems.splice(i, 1)
-                    console.log('zapped')
-                }
+        let x = 0;
+        for (i = 0; i < uniqueTagElems.length; i++) {
+            console.log('uniquetagelement and event.target.textcontent: ' + uniqueTagElems[i] + 'and' + event.target.textContent)
+            if (uniqueTagElems[i] === event.target.textContent) {
+                uniqueTagElems.splice(i, 1);
+                console.log['yo'];
+                x = 1;
             }
         }
 
+        if (x === 0) {
+            uniqueTagElems.push(event.target.textContent)
+        }
 
+        console.log('uniquetags2: ' + uniqueTagElems)
 
-        console.log('uniqueTagElems: ' + uniqueTagElems)
+        // if (!event.target.classList.contains('sortingtag')) {
+        //     for (i = 0; i < uniqueTagElems.length; i++) {
+        //         if (event.target.textContent === uniqueTagElems[i]) {
+        //             uniqueTagElems.splice(i, 1)
+        //         }
+        //     }
+        // }
 
+        
 
         containerList.textContent = ''
         let sortedList = todolist.projectSort(uniqueTagElems)
@@ -325,23 +335,20 @@ const userInterface = (containerListName, itemStatus) => {
                 displayItem(sortedList[i])
             }
         }
-
-
+        console.log('uniquetags: ' + uniqueTagElems)
         let allTags = document.querySelectorAll('.tagButton')
 
         uniqueTagElems.forEach((tag) => {
             let thevalue = tag;
-
+            console.log(tag)
             allTags.forEach((btntag) => {
                 if (btntag.textContent === thevalue) {
                     btntag.classList.toggle('sortingtag')
                 }
             })
-            console.log(tag)
         })
 
-        console.log("allTags: ")
-        console.log(allTags)
+        // you must add in a function like the above forEach just to color in the sortButtons!
 
         let testTags = document.querySelectorAll('.tagButton')
         for (let tag of testTags) {
