@@ -1,5 +1,5 @@
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
     /* justify-content: center; */
     margin: 0px;
@@ -14,8 +14,8 @@ p {
 button {
     background-color: pink;
     border-radius: 50%;
-    border: 1px solid rgb(255, 243, 243);;
-    font-family: sans-serif;
+    border: 1px solid rgb(255, 243, 243);
+    font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 
@@ -88,7 +88,7 @@ input, select {
 }
 
 .formlabel {
-    font-family: sans-serif;
+    /* font-family: sans-serif; */
     color: rgb(109, 46, 255);
     position: absolute;
     top: 6px;
@@ -144,9 +144,56 @@ input, select {
     position: relative;
 }
 
+.shorter {
+    animation-name: shorteranim;
+    animation-duration: 0.3s;
+}
+
+@keyframes shorteranim {
+    0% {
+        height: 120px;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
 .taller {
     height: 120px;
+    animation-name: talleranim;
+    animation-duration: 0.3s;
 }
+
+@keyframes talleranim {
+    0% {
+        height: 50px;
+    }
+    100% {
+        height: 120px;
+    }
+}
+
+.goodbye {
+    height: 0px;
+    animation-name: byenow;
+    animation-duration: 0.3s;
+    opacity: 0%
+}
+
+@keyframes byenow {
+    0% {
+        height: 50px;
+        opacity: 100%;
+    }
+    50% {
+        opacity: 0%;
+    }
+    100% {
+        height: 0px;
+        opacity: 0%;
+    }
+}
+
 
 .itemname {
     position: absolute;

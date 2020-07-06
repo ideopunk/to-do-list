@@ -128,6 +128,13 @@ const userInterface = (containerListName, itemStatus) => {
         let item = grabItem()
         let carrier = event.target.parentNode;
         carrier.classList.toggle('taller');
+        if (carrier.classList.contains('taller')) {
+            carrier.classList.remove('shorter')
+        } else {
+            carrier.classList.add('shorter')
+        }
+        
+        
 
         if (carrier.classList.contains('taller')) {
             let description = document.createElement('p')
@@ -164,10 +171,11 @@ const userInterface = (containerListName, itemStatus) => {
 
     // when you click the button, the item should become 'complete'
     let completeItem = () => { // CI will have to modify this / not use it. 
+        event.target.parentNode.classList.add('goodbye')
         let item = grabItem()
         item.status = 'complete'
         console.log('completed!')
-        controller.listgenerate();
+        setTimeout(controller.listgenerate, 300);
     };
 
     // the tag buttons should be deletable
