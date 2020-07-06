@@ -155,6 +155,75 @@ input, select {
     position: relative;
 }
 
+
+.itemname {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    font-size: 20px;
+    background-color: inherit;
+    text-shadow: 10 10 10;
+    border: 0px;
+    color: fuchsia;
+    display: block;
+}
+
+.completebutton {
+    position: absolute;
+    right: 5px;
+    top: 3px;
+}
+
+.newTagButton {
+    position: absolute;
+    right: 5px;
+    top: 25px;
+}
+
+.sortingtag {
+    border: 1px solid red;
+}
+
+.tagCarrier {
+    display: flex;
+    position: absolute;
+    top: 31px;
+    left: 7px;
+}
+
+.tagButton {
+    font-size: 11px;
+    margin-right: 3px;
+}
+
+.bonus {
+    position: relative;
+}
+
+.description {
+    top: 40px;
+    /* left: -110px; */
+    color: rgb(225, 138, 246);
+    /* word-wrap: break-word; */
+    overflow-wrap: anywhere;
+    font-size: 12px;
+    margin: 7px;
+}
+
+.dueDate {
+    top: 40px;
+    left: 17px;
+    color: rgb(96, 136, 195);
+    font-size: 12px;
+}
+
+.priority {
+    top: 30px;
+    left: 220px;
+    color: rgb(96, 136, 195);
+    font-size: 12px;
+}
+
 .shorter {
     animation-name: shorteranim;
     animation-duration: 0.3s;
@@ -170,7 +239,8 @@ input, select {
 }
 
 .taller {
-    height: 120px;
+    min-height: 100px;
+    height: fit-content;
     animation-name: talleranim;
     animation-duration: 0.3s;
 }
@@ -180,7 +250,7 @@ input, select {
         height: 50px;
     }
     100% {
-        height: 120px;
+        height: fit-content;
     }
 }
 
@@ -205,66 +275,6 @@ input, select {
     }
 }
 
-
-.itemname {
-    position: absolute;
-    top: 5px;
-    left: 5px;
-    font-size: 20px;
-    background-color: inherit;
-    color: rgb(225, 138, 246);
-    text-shadow: 10 10 10;
-    border: 0px;
-}
-
-.completebutton {
-    position: absolute;
-    right: 5px;
-    top: 25px;
-}
-
-.newTagButton {
-    position: absolute;
-    right: 5px;
-    top: 2px;
-}
-
-.sortingtag {
-    border: 1px solid red;
-}
-
-.tagCarrier {
-    display: flex;
-    position: absolute;
-    bottom: 2px;
-    left: 7px;
-}
-
-.tagButton {
-    font-size: 11px;
-    margin-right: 3px;
-}
-
-.bonus {
-    position: absolute;
-}
-
-.description {
-    top: 25px;
-    left: 8px;
-}
-
-.dueDate {
-    bottom: 25px;
-    right: 5px;
-}
-
-
-
-.priority {
-    right: 5px;
-    bottom: 5px;
-}
 
 .Low {
     background-color: rgb(255, 243, 243);
@@ -350,7 +360,7 @@ input, select {
     100% {
         left: 0px;
     }
-} */
+} 
 
 .disappearleft {
     animation-name: disappearleft;

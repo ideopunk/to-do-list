@@ -5,7 +5,7 @@ import todolist from './todolist.js'
 // testers
 let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
 let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
-let bonusTask = todoitem('Go home', "Forever", "2022-07-11", "High");
+let bonusTask = todoitem('Go home', "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2022-07-11", "High");
 let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
 
 finishedTask.status = 'complete'
@@ -127,16 +127,16 @@ const userInterface = (containerListName, itemStatus) => {
     function expand() {
         let item = grabItem()
         let carrier = event.target.parentNode;
-        carrier.classList.toggle('taller');
-        if (carrier.classList.contains('taller')) {
-            carrier.classList.remove('shorter')
-        } else {
-            carrier.classList.add('shorter')
-        }
+        // carrier.classList.toggle('taller');
+        // if (carrier.classList.contains('taller')) {
+        //     carrier.classList.remove('shorter')
+        // } else {
+        //     carrier.classList.add('shorter')
+        // }
         
         
 
-        if (carrier.classList.contains('taller')) {
+        if (!carrier.classList.contains('taller')) {
             let description = document.createElement('p')
             description.textContent = item.description;
             description.classList.add('description');
@@ -146,7 +146,7 @@ const userInterface = (containerListName, itemStatus) => {
             dueDate.classList.add('dueDate')
 
             let priority = document.createElement('div')
-            priority.textContent = item.priority;
+            priority.textContent = `Priority: ${item.priority}`;
             priority.classList.add('priority')
 
             let props = [description, dueDate, priority];
@@ -156,7 +156,8 @@ const userInterface = (containerListName, itemStatus) => {
                 carrier.appendChild(props[i]);
             };
 
-
+            carrier.classList.remove('shorter')
+            carrier.classList.add('taller')
 
         } else {
             let len = carrier.childNodes.length;
@@ -165,6 +166,8 @@ const userInterface = (containerListName, itemStatus) => {
                     carrier.removeChild(carrier.childNodes[i])
                 }
             }
+            carrier.classList.add('shorter');
+            carrier.classList.remove('taller');
         }
 
     }
