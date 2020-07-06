@@ -62,7 +62,10 @@ const formInterface = (() => {
         let tags = document.querySelector('#tags').value
         let newItem = todoitem(title, description, dueDate, priority)
         if (tags.length > 0) {
-            newItem.addTag(tags)
+            tags = tags.split(' ');
+            tags.forEach((tag) => {
+                newItem.addTag(tag)
+            })
             sorter.generateFilterList();
         }
 
@@ -401,17 +404,24 @@ const selectorController = (() => {
 
     function filterToggle() {
         filterToggler.classList.toggle('hide')
-        filter.classList.toggle('hide')
+        filterToggler.classList.toggle('transitionleft')
+        filterToggler.classList.toggle('disappearleft')
+
+        filter.classList.remove('hide')
+        filter.classList.toggle('transitionleft')
+        filter.classList.toggle('disappearleft')
     }
 
     function formToggle() {
         formToggler.classList.toggle('hide');
         form.classList.toggle('hide')
+        form.classList.toggle('transitionright');
     }
 
     function completeToggle() {
         completedToggler.classList.toggle('hide');
         complete.classList.toggle('hide');
+        complete.classList.toggle('transitionright');
     }
 
     const generate = () => {
