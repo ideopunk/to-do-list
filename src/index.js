@@ -388,14 +388,22 @@ const selectorController = (() => {
 
     function formToggle() {
         formToggler.classList.toggle('hide');
-        form.classList.toggle('hide')
+        formToggler.classList.toggle('transitionright')
+        formToggler.classList.toggle('disappearright')
+
+        form.classList.remove('hide');
         form.classList.toggle('transitionright');
+        form.classList.toggle('disappearright');
     }
 
     function completeToggle() {
         completedToggler.classList.toggle('hide');
-        complete.classList.toggle('hide');
+        completedToggler.classList.toggle('transitionright')
+        completedToggler.classList.toggle('disappearright')
+
+        complete.classList.remove('hide');
         complete.classList.toggle('transitionright');
+        complete.classList.toggle('disappearright');
     }
 
     const generate = () => {

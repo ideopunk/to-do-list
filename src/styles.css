@@ -71,7 +71,7 @@ input, select {
 #newItemForm {
     display: grid;
     position: absolute;
-    right: 0px;
+    /* right: 0px; */
     width: fit-content;
     height: 230px;
     border-right: 0px solid white;
@@ -220,7 +220,7 @@ input, select {
 
 #completedContainer {
     position: absolute;
-    right: 0px;
+    /* right: 0px; */
     top: 300px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
@@ -306,10 +306,14 @@ input, select {
     }
 }
 
+
+
+
 .transitionright {
     animation-name: transitionright;
     animation-duration: 0.4s;
     animation-timing-function: linear;
+    right: 0px;
 }
 
 @keyframes transitionright {
@@ -325,14 +329,14 @@ input, select {
     animation-name: disappearright;
     animation-duration: 0.4s;
     animation-timing-function: linear;
-    left: -302px;
+    right: -302px; 
 }
 
 @keyframes disappearright {
     0% {
-        left: 0px;
+        right: 0px;
     }
     100% {
-        left: -300px;
+        right: -300px;
     }
 }
