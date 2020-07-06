@@ -30,15 +30,12 @@ const sorter = (() => {
 
         let tagList = []
         let potentialTags = document.querySelectorAll('.tagButton')
-        console.log('potential tags: ')
-        console.log(potentialTags)
         potentialTags.forEach((tag) => {
             tagList.push(tag.textContent)
         });
 
         tagList = [...new Set(tagList)];
 
-        console.log(tagList)
         for (let elem of tagList) {
             let tagLine = document.createElement('button')
             tagLine.classList.add('tagLine');
@@ -52,9 +49,9 @@ const sorter = (() => {
     return { generateFilterList }
 })();
 
+
 const formInterface = (() => {
     function addItem() {
-        console.log('formadditem')
         let title = document.querySelector('#title').value
         let description = document.querySelector('#description').value
         let dueDate = document.querySelector('#dueDate').value
@@ -98,7 +95,6 @@ const formInterface = (() => {
 })();
 
 
-
 const menuInterface = (() => {
     function menuInterfaceGenerate() {
         let clear = document.querySelector('#clear');
@@ -106,7 +102,6 @@ const menuInterface = (() => {
     }
     return { menuInterfaceGenerate }
 })();
-
 
 
 const userInterface = (containerListName, itemStatus) => {
@@ -130,14 +125,11 @@ const userInterface = (containerListName, itemStatus) => {
 
     // when you click on any item, it should expand to show full details
     function expand() {
-        console.log(grabItem())
         let item = grabItem()
         let carrier = event.target.parentNode;
         carrier.classList.toggle('taller');
-        console.log(carrier.childNodes)
 
         if (carrier.classList.contains('taller')) {
-            console.log('ya')
             let description = document.createElement('p')
             description.textContent = item.description;
             description.classList.add('description');
@@ -158,28 +150,20 @@ const userInterface = (containerListName, itemStatus) => {
             };
 
 
-            console.log('yo');
-            console.log(carrier.childNodes);
 
         } else {
-            console.log(carrier.childNodes)
             let len = carrier.childNodes.length;
             for (let i = len - 1; i > 0; i--) {
-                console.log(i)
-                console.log(carrier.childNodes[i])
                 if (carrier.childNodes[i].classList.contains('bonus')) {
-                    console.log('removing: ' + carrier.childNodes[i])
                     carrier.removeChild(carrier.childNodes[i])
                 }
             }
-            console.log(carrier.childNodes)
         }
 
     }
 
     // when you click the button, the item should become 'complete'
     let completeItem = () => { // CI will have to modify this / not use it. 
-        console.log('completeItem')
         let item = grabItem()
         item.status = 'complete'
         console.log('completed!')
@@ -200,7 +184,7 @@ const userInterface = (containerListName, itemStatus) => {
                 break;
             }
         }
-        
+
     }
 
     // there should be little buttons for each tag 
@@ -215,20 +199,17 @@ const userInterface = (containerListName, itemStatus) => {
 
     // there should be a popup to write in a new tag
     function createNewTag() {
-        console.log(this)
-        console.log(this.parentNode)
         let item = grabItem()
         let newTag = prompt("New tag");
         item.addTag(newTag)
         sorter.generateFilterList()
-        console.log("parent: " + event.target.parentNode)
         let carrier = event.target.parentNode;
         let tagCarrier = carrier.childNodes[2]
         createTagButton(newTag, tagCarrier)
     };
 
-    // 
-    let createCompleteButton = (carrier, item) => {
+    // there should be a button for marking it as complete.
+    let createCompleteButton = (carrier) => {
         let completeButton = document.createElement('button')
         completeButton.textContent = '√'
         completeButton.classList.add('completebutton')
@@ -237,7 +218,7 @@ const userInterface = (containerListName, itemStatus) => {
     }
 
     // there should be a button for adding new tags
-    function createNewTagButton(carrier, item) {
+    function createNewTagButton(carrier) {
         let newTagButton = document.createElement('button')
         newTagButton.textContent = 'x'
         newTagButton.classList.add('newTagButton')
@@ -245,6 +226,7 @@ const userInterface = (containerListName, itemStatus) => {
         carrier.appendChild(newTagButton)
     }
 
+    // there should be an item name (which, when clicked, expands)
     function createItemName(carrier, item) {
         let itemName = document.createElement('button')
         itemName.textContent = item.title;
@@ -272,7 +254,9 @@ const userInterface = (containerListName, itemStatus) => {
         createItemName(carrier, item)
 
         // add button for completion
-        createCompleteButton(carrier, item)
+        if (itemStatus === 'incomplete') {
+            createCompleteButton(carrier)
+        }
 
         // add button for each tag 
         let tagCarrier = document.createElement('div')
@@ -282,13 +266,13 @@ const userInterface = (containerListName, itemStatus) => {
         }
         carrier.appendChild(tagCarrier)
         // add button for adding new tags
-        createNewTagButton(carrier, item)
+        createNewTagButton(carrier)
 
         containerList.appendChild(carrier);
     }
 
     // CI will not need sortGenerate
-    function sortGenerate() { 
+    function sortGenerate() {
         // event.target.classList.toggle('sortingtag')
         console.log(event.target.textContent + 'ya')
 
@@ -305,18 +289,15 @@ const userInterface = (containerListName, itemStatus) => {
         for (i = 0; i < tagelems.length; i++) {
             preUniqueTagElems.push(tagelems[i].textContent)
         }
-        
+
         // preUniqueTagElems.push(event.target.textContent)
         let uniqueTagElems = [...new Set(preUniqueTagElems)];
 
-        console.log('uniquetags1: ' + uniqueTagElems)
 
         let x = 0;
         for (i = 0; i < uniqueTagElems.length; i++) {
-            console.log('uniquetagelement and event.target.textcontent: ' + uniqueTagElems[i] + 'and' + event.target.textContent)
             if (uniqueTagElems[i] === event.target.textContent) {
                 uniqueTagElems.splice(i, 1);
-                console.log['yo'];
                 x = 1;
             }
         }
@@ -325,17 +306,6 @@ const userInterface = (containerListName, itemStatus) => {
             uniqueTagElems.push(event.target.textContent)
         }
 
-        console.log('uniquetags2: ' + uniqueTagElems)
-
-        // if (!event.target.classList.contains('sortingtag')) {
-        //     for (i = 0; i < uniqueTagElems.length; i++) {
-        //         if (event.target.textContent === uniqueTagElems[i]) {
-        //             uniqueTagElems.splice(i, 1)
-        //         }
-        //     }
-        // }
-
-        
 
         containerList.textContent = ''
         let sortedList = todolist.projectSort(uniqueTagElems)
@@ -344,12 +314,10 @@ const userInterface = (containerListName, itemStatus) => {
                 displayItem(sortedList[i])
             }
         }
-        console.log('uniquetags: ' + uniqueTagElems)
         const allTags = document.querySelectorAll('.tagButton')
 
         uniqueTagElems.forEach((tag) => {
             let thevalue = tag;
-            console.log(tag)
             allTags.forEach((btntag) => {
                 if (btntag.textContent === thevalue) {
                     btntag.classList.toggle('sortingtag')
@@ -366,18 +334,22 @@ const userInterface = (containerListName, itemStatus) => {
 
         // you must add in a function like the above forEach just to color in the sortButtons!
 
-        let testTags = document.querySelectorAll('.tagButton')
-        for (let tag of testTags) {
-            if (tag.classList.contains('sortingtag')) {
-                console.log(tag)
-            }    
-        }
-        
+        // let testTags = document.querySelectorAll('.tagButton')
+        // for (let tag of testTags) {
+        //     if (tag.classList.contains('sortingtag')) {
+        //         console.log(tag)
+        //     }    
+        // }
+
     }
 
     // initialize list
     const generate = () => {
         containerList.textContent = ''
+        if (containerListName === '#completedList') {
+            let completedbutton = document.querySelector('#returncompleted')
+            completedbutton.addEventListener('click', selectorController.completeToggle)
+        }
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].status === itemStatus) { // CI will need 'complete'
                 displayItem(todolist.list[i])
@@ -385,11 +357,13 @@ const userInterface = (containerListName, itemStatus) => {
         }
     }
 
-    return { sortGenerate, generate }
+    return { createCompleteButton, sortGenerate, generate }
 };
+
 
 const mainInterface = userInterface('#containerList', 'incomplete');
 const completedInterface = userInterface('#completedList', 'complete');
+
 
 const selectorController = (() => {
     const filterToggler = document.querySelector('#ex')
@@ -432,6 +406,7 @@ const selectorController = (() => {
 
     return { filterToggle, formToggle, completeToggle, generate }
 })();
+
 
 const controller = (() => {
     const listgenerate = () => {
