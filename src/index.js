@@ -212,8 +212,8 @@ const userInterface = (containerListName, itemStatus) => {
         item.addTag(newTag)
         sorter.generateFilterList()
         let carrier = event.target.parentNode;
-        let tagCarrier = carrier.childNodes[2]
-        createTagButton(newTag, tagCarrier)
+        let tagCarrier = carrier.childNodes[2];
+        createTagButton(newTag, tagCarrier);
     };
 
     // there should be a button for marking it as complete.
@@ -261,10 +261,9 @@ const userInterface = (containerListName, itemStatus) => {
         // add title
         createItemName(carrier, item)
 
-        // add button for completion
-        if (itemStatus === 'incomplete') {
-            createCompleteButton(carrier)
-        }
+        
+        // add button for adding new tags
+        createNewTagButton(carrier)
 
         // add button for each tag 
         let tagCarrier = document.createElement('div')
@@ -273,8 +272,11 @@ const userInterface = (containerListName, itemStatus) => {
             createTagButton(tag, tagCarrier)
         }
         carrier.appendChild(tagCarrier)
-        // add button for adding new tags
-        createNewTagButton(carrier)
+
+        // add button for completion
+        if (itemStatus === 'incomplete') {
+            createCompleteButton(carrier)
+        }
 
         containerList.appendChild(carrier);
     }

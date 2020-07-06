@@ -4,7 +4,7 @@ body {
     /* justify-content: center; */
     margin: 0px;
     margin-top: 15px;
-    /* overflow: auto; */
+    overflow: hidden;
 }
 
 p {
@@ -15,14 +15,14 @@ p {
 button {
     background-color: pink;
     border-radius: 50%;
-    border: 1px solid rgb(255, 243, 243);
+    border: inherit;
     font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
 
 
 .hide {
-    visibility: hidden;
+    display: none;
 }
 
 input, select {
@@ -99,9 +99,14 @@ input, select {
 #description {
     height: 50px;
 }
-    
+
 #formduedate {
     margin-top: 50px;
+}
+
+#priority {
+    width: 60px;
+    background-color: white;
 }
 
 #divsubmit {
@@ -237,6 +242,7 @@ input, select {
 
 .tagButton {
     font-size: 11px;
+    margin-right: 3px;
 }
 
 .bonus {
@@ -253,11 +259,11 @@ input, select {
     right: 5px;
 }
 
-#priority {
-    /* right: 5px;
-    bottom: 5px; */
-    width: 60px;
-    background-color: white;
+
+
+.priority {
+    right: 5px;
+    bottom: 5px;
 }
 
 .Low {
@@ -303,7 +309,7 @@ input, select {
     width: 40px;
     border-left: 0px solid white;
     border-top-left-radius: 0px;
-    border-bottom-left-radius: 0px;    
+    border-bottom-left-radius: 0px;
 }
 
 
@@ -315,7 +321,7 @@ input, select {
     width: 40px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;    
+    border-bottom-right-radius: 0px;
 }
 
 #checkmark {
@@ -325,7 +331,7 @@ input, select {
     width: 40px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
-    border-bottom-right-radius: 0px;    
+    border-bottom-right-radius: 0px;
 }
 
 
@@ -344,7 +350,7 @@ input, select {
     100% {
         left: 0px;
     }
-}
+} */
 
 .disappearleft {
     animation-name: disappearleft;
@@ -385,7 +391,7 @@ input, select {
     animation-name: disappearright;
     animation-duration: 0.4s;
     animation-timing-function: linear;
-    right: -302px; 
+    right: -302px;
 }
 
 @keyframes disappearright {
