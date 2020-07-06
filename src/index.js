@@ -156,8 +156,8 @@ const userInterface = (containerListName, itemStatus) => {
                 carrier.appendChild(props[i]);
             };
 
-            carrier.classList.remove('shorter')
             carrier.classList.add('taller')
+            carrier.classList.remove('shorter')
 
         } else {
             let len = carrier.childNodes.length;
@@ -212,11 +212,13 @@ const userInterface = (containerListName, itemStatus) => {
     function createNewTag() {
         let item = grabItem()
         let newTag = prompt("New tag");
-        item.addTag(newTag)
-        sorter.generateFilterList()
-        let carrier = event.target.parentNode;
-        let tagCarrier = carrier.childNodes[2];
-        createTagButton(newTag, tagCarrier);
+        if (newTag) {
+            item.addTag(newTag)
+            sorter.generateFilterList()
+            let carrier = event.target.parentNode;
+            let tagCarrier = carrier.childNodes[2];
+            createTagButton(newTag, tagCarrier);
+        }
     };
 
     // there should be a button for marking it as complete.

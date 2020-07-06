@@ -19,6 +19,9 @@ button {
     font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+*,*:focus,*:hover{
+    outline:none;
+}
 
 
 .hide {
@@ -231,7 +234,7 @@ input, select {
 
 @keyframes shorteranim {
     0% {
-        height: 120px;
+        height: 100px;
     }
     100% {
         height: 50px;
@@ -239,8 +242,8 @@ input, select {
 }
 
 .taller {
-    min-height: 100px;
-    height: fit-content;
+    /* min-height: 100px; */
+    height: 130px;
     animation-name: talleranim;
     animation-duration: 0.3s;
 }
@@ -250,7 +253,7 @@ input, select {
         height: 50px;
     }
     100% {
-        height: fit-content;
+        height: 130px;
     }
 }
 
