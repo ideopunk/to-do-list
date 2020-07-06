@@ -31,6 +31,7 @@ input, select {
     border-radius: 10px;
     position: absolute;
     right: 3px;
+    text-indent: 5px;
 }
 
 /* applies to all three */
