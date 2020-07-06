@@ -62,6 +62,10 @@ input, select {
     margin-bottom: 7px;
 }
 
+.focused {
+    border: 1px solid red;
+}
+
 /* form guys */
 
 #newItemForm {

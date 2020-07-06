@@ -288,6 +288,12 @@ const userInterface = (containerListName, itemStatus) => {
     function sortGenerate() { 
         // event.target.classList.toggle('sortingtag')
         console.log(event.target.textContent + 'ya')
+
+        // remove existing highlighting from left menu tags
+        const tagLines = document.querySelectorAll('.tagLine')
+        tagLines.forEach((tagLine) => {
+            tagLine.classList.remove('focused')
+        })
         let i;
 
         // get a unique list of all the active tags. 
@@ -336,7 +342,7 @@ const userInterface = (containerListName, itemStatus) => {
             }
         }
         console.log('uniquetags: ' + uniqueTagElems)
-        let allTags = document.querySelectorAll('.tagButton')
+        const allTags = document.querySelectorAll('.tagButton')
 
         uniqueTagElems.forEach((tag) => {
             let thevalue = tag;
@@ -344,6 +350,13 @@ const userInterface = (containerListName, itemStatus) => {
             allTags.forEach((btntag) => {
                 if (btntag.textContent === thevalue) {
                     btntag.classList.toggle('sortingtag')
+                }
+            })
+
+            // bold the tags in the left menu accordingl.
+            tagLines.forEach((tagline) => {
+                if (tagline.textContent === tag) {
+                    tagline.classList.toggle('focused');
                 }
             })
         })
