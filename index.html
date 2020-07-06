@@ -8,8 +8,8 @@
 <body>
     <!-- Selectors -->
     <div class='bigboi transitionleft' id='ex'><p>X</p></div>
-    <div class='bigboi' id='plus'><p>+</p></div>
-    <div class='bigboi' id='checkmark'><p>√</p></div>
+    <div class='bigboi transitionright' id='plus'><p>+</p></div>
+    <div class='bigboi transitionright' id='checkmark'><p>√</p></div>
 
     <!-- Filter menu -->
     <div class='hide disappearleft bigboi' id='sortForm'>
@@ -26,7 +26,7 @@
     </div>
     
     <!-- New item form -->
-    <div class='hide bigboi' id="newItemForm">
+    <div class='hide disappearright bigboi' id="newItemForm">
         <div class='forminput'>
             <label class='formlabel' for='title'>Title</label>
             <input id='title' name='title'>
@@ -57,12 +57,13 @@
     </div>
 
     <!-- Completed items -->
-    <div id='completedContainer' class='hide bigboi'>
+    <div id='completedContainer' class='hide disappearright bigboi'>
         <div class='menu'>
             <button id='returncompleted'>Completed Items</button>
         </div>
         <div id='completedList'></div>
     </div>
+    
     <script src='main.js'></script>
 </body>
 
