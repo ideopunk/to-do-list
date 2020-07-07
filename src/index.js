@@ -26,15 +26,18 @@ const sorter = (() => {
         const sortForm = document.querySelector('#sortList')
         const sortTop = document.querySelector('#sorttop')
         sortTop.addEventListener('click', selectorController.filterToggle)
-        sortForm.textContent = ''
+        sortForm.textContent = '';
 
         let tagList = []
         let potentialTags = document.querySelectorAll('.tagButton')
         potentialTags.forEach((tag) => {
+            console.log(tag.textContent)
             tagList.push(tag.textContent)
         });
 
         tagList = [...new Set(tagList)];
+
+        console.log(`taglist: ${tagList}`)
 
         for (let elem of tagList) {
             let tagLine = document.createElement('button')
@@ -66,19 +69,20 @@ const formInterface = (() => {
             sorter.generateFilterList();
         }
 
-        if (title.length > 0) {
-            todolist.addToList(newItem)
+        if (title.length === 0) {
+            alert('Title is required')
+            
         }
         else {
-            alert('Title is required')
+            todolist.addToList(newItem)
+            selectorController.formToggle();
+            document.querySelector('#title').value = ''
+            document.querySelector('#description').value = ''
+            document.querySelector('#dueDate').value = ''
+            document.querySelector('#priority').value = 'Low'
+            document.querySelector('#tags').value = ''
+            mainInterface.displayItem(newItem)
         }
-        selectorController.formToggle();
-        document.querySelector('#title').value = ''
-        document.querySelector('#description').value = ''
-        document.querySelector('#dueDate').value = ''
-        document.querySelector('#priority').value = 'Low'
-        document.querySelector('#tags').value = ''
-        mainInterface.displayItem(newItem)
         // mainInterface.generate()
     }
 
@@ -175,7 +179,7 @@ const userInterface = (containerListName, itemStatus) => {
 
 
     // when you click the button, the item should become 'complete'
-    let completeItem = () => { // CI will have to modify this / not use it.
+    let completeItem = () => { 
         let carrier = event.target.parentNode;
         carrier.classList.add('goodbye')
         console.log(carrier)
@@ -197,13 +201,18 @@ const userInterface = (containerListName, itemStatus) => {
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].title === itemcheck) {
                 todolist.list[i].deleteTag(tag.textContent)
-                sorter.generateFilterList() // is this working? ....deleteTag isn't doing what we love.
+                 // is this working? ....deleteTag isn't doing what we love.
                 console.log('delete!')
                 break;
             }
         }
+
+        
         setTimeout(() => {
             tag.parentNode.removeChild(tag);
+            console.log('ye')
+            sorter.generateFilterList();
+            console.log('ya')
         }, 300);
     }
 
@@ -223,10 +232,10 @@ const userInterface = (containerListName, itemStatus) => {
         let newTag = prompt("New tag");
         if (newTag) {
             item.addTag(newTag)
-            sorter.generateFilterList()
             let carrier = event.target.parentNode;
             let tagCarrier = carrier.childNodes[2];
             createTagButton(newTag, tagCarrier);
+            sorter.generateFilterList()
         }
     };
 
