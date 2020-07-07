@@ -1,6 +1,6 @@
 import './styles.css';
-import { todoitem } from './todoitem.js'
-import todolist from './todolist.js'
+// import { todoitem } from './todoitem.js'
+import { todolist, todoitem } from './todolist.js'
 
 todolist.generate();
 console.log(localStorage)
@@ -10,12 +10,11 @@ console.log(todolist)
 const testers = (() => {
     function test() {
         if (todolist.list.length === 0) {
-            let storeTask = todoitem('Nip down to the store', "Get a funny feeling", "2020-07-11", "Low")
-            let lotteryTask = todoitem('Buy lottery ticket', "No. Could it be?", "2021-07-11", "Mid")
-            let runTask = todoitem('Run home home', "Darling! Get off the phone! Everything has changed!", "2022-07-11", "High");
-            let finishedTask = todoitem('Avoid housework', "'You know it's no good for my asthma.'", '2020-01-01', 'High');
+            let storeTask = todoitem('Nip down to the store', "Get a funny feeling", "2020-07-11", "Low", "incomplete")
+            let lotteryTask = todoitem('Buy lottery ticket', "No. Could it be?", "2021-07-11", "Mid", "incomplete")
+            let runTask = todoitem('Run home', "Darling! Get off the phone! Everything has changed!", "2022-07-11", "High", "incomplete");
+            let finishedTask = todoitem('Avoid housework', "'You know it's no good for my asthma.'", '2020-01-01', 'High', 'complete');
             
-            finishedTask.status = 'complete'
             storeTask.addTag('Exercise')
             lotteryTask.addTag('Daring')
             lotteryTask.addTag('Cunning')
@@ -81,7 +80,7 @@ const formInterface = (() => {
         let dueDate = document.querySelector('#dueDate').value
         let priority = document.querySelector('#priority').value
         let tags = document.querySelector('#tags').value
-        let newItem = todoitem(title, description, dueDate, priority)
+        let newItem = todoitem(title, description, dueDate, priority, 'incomplete')
         if (tags.length > 0) {
             tags = tags.split(' ');
             tags.forEach((tag) => {
@@ -104,7 +103,6 @@ const formInterface = (() => {
             mainInterface.displayItem(newItem)
             sorter.generateFilterList();
         }
-        // mainInterface.generate()
     }
 
     function formgenerate() {
@@ -359,7 +357,6 @@ const userInterface = (containerListName, itemStatus) => {
             uniqueTagElems.push(event.target.textContent)
         }
 
-        console.log(uniqueTagElems) // good above here....
         
         // return all the todos that have the tag combination we want. 
         let sortedList = todolist.projectSort(uniqueTagElems)
@@ -432,7 +429,7 @@ const userInterface = (containerListName, itemStatus) => {
             completedbutton.addEventListener('click', selectorController.completeToggle)
         }
         for (let i = 0; i < todolist.list.length; i++) {
-            if (todolist.list[i].status === itemStatus) { // CI will need 'complete'
+            if (todolist.list[i].status === itemStatus) { 
                 displayItem(todolist.list[i])
             }
         }
@@ -511,7 +508,7 @@ const controller = (() => {
         completedInterface.generate();
     }
 
-    // this will trigger all the generations
+    // trigger all the generations
     const generate = () => {
         formInterface.formgenerate();
         menuInterface.menuInterfaceGenerate();

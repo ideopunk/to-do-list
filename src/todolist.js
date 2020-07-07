@@ -1,3 +1,5 @@
+import { todoitem } from './todoitem.js'
+
 const todolist = (() => {
     let list = [];
 
@@ -12,7 +14,14 @@ const todolist = (() => {
             sensibleobject = 1;
         }
         for (let i = 0; i < sensibleobject.length; i++) {
-            list[i] = sensibleobject[i]
+            let sensob = sensibleobject[i]
+            console.log(sensob)
+            let todo = todoitem(sensob.title, sensob.description, sensob.dueDate, sensob.priority, sensob.status) 
+            for (let tag of sensob.tags) {
+                todo.addTag(tag)
+            }
+            list[i] = todo;
+            console.log(list)
         }
     }
 
@@ -67,4 +76,8 @@ const todolist = (() => {
     return {list, addToList, deleteFromList, projectSort, storageUpdate, generate }
 })();
 
-export default todolist;
+export {
+    todolist, 
+    todoitem
+}
+    

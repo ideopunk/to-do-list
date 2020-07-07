@@ -1,17 +1,12 @@
-import tagList from './taglist.js'
-
-const todoitem = (title, description, dueDate, priority) => {
-    const status = "incomplete"
+const todoitem = (title, description, dueDate, priority, status) => {
     let tags = []
     let addTag = (tag) => {
         tags.push(tag);
-        tagList.posUpdate(tag);
     }
     let deleteTag = (tag) => {
         for (let i = 0; i < tags.length; i++) {
             if (tags[i] === tag) {
                 tags.splice(i, 1);
-                tagList.negUpdate(tag);
                 break;
             }
         }
@@ -21,5 +16,4 @@ const todoitem = (title, description, dueDate, priority) => {
 
 export {
     todoitem,
-    tagList
 }   
