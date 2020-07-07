@@ -50,6 +50,10 @@ input, select {
 
 /* sort guys */
 
+#sortList {
+    border-bottom: 1px solid red;
+}
+
 #sortForm {
     display: grid;
     position: relative;
@@ -65,6 +69,22 @@ input, select {
     left: 20%;
     margin-top: 7px;
     margin-bottom: 7px;
+    border: 0px solid red;
+}
+
+.menu {
+    margin: 10px;
+    height: 20px;
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+#clear {
+    top: 20%;
+    color: fuchsia;
+    background-color: inherit;
 }
 
 .focused {
@@ -132,18 +152,8 @@ input, select {
     left: 250px;
 }
 
-.menu {
-    height: 35px;
-    position: relative;
-    background-color: rgb(255, 250, 250);
-    width: 300px;
-}
 
-#clear {
-    position: absolute;
-    left: 20px;
-    top: 20%;
-}
+
 
 #newToDo {
     position: absolute;
