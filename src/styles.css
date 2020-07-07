@@ -1,7 +1,8 @@
+/* Apply everywhere or to most areas */
+
 body {
     font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     display: flex;
-    /* justify-content: center; */
     margin: 0px;
     margin-top: 15px;
     overflow: hidden;
@@ -19,44 +20,15 @@ button {
     font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
-
 *,*:focus,*:hover{
     outline:none;
 }
-
 
 .hide {
     display: none;
     visibility: hidden;
 }
 
-.burrow {
-    animation-name: burrowing;
-    animation-duration: 0.4s;
-}
-
-@keyframes burrowing {
-    0% {
-        width: 100%;
-    }
-    100% {
-        width: 0%;
-    }
-}
-
-input, select, textarea {
-    margin-top: 5px;
-    margin-bottom: 5px;
-    border: 1px solid pink;
-    border-radius: 10px;
-    position: absolute;
-    right: 3px;
-    text-indent: 5px;
-    resize: none;
-    width: 170px;
-}
-
-/* applies to all three */
 .bigboi {
     background-color: rgb(255, 243, 243);
     border: 1.5px solid rgb(255, 145, 145);
@@ -70,8 +42,9 @@ input, select, textarea {
     opacity: 45%;
 }
 
-/* sort guys */
 
+
+/* sort guys */
 #sortList {
     border-bottom: 1px solid red;
 }
@@ -121,8 +94,9 @@ input, select, textarea {
     border-radius: 50%;
 }
 
-/* form guys */
 
+
+/* form guys */
 #newItemForm {
     display: grid;
     position: absolute;
@@ -132,6 +106,18 @@ input, select, textarea {
     border-right: 0px solid white;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
+}
+
+input, select, textarea {
+    margin-top: 5px;
+    margin-bottom: 5px;
+    border: 1px solid pink;
+    border-radius: 10px;
+    position: absolute;
+    right: 3px;
+    text-indent: 5px;
+    resize: none;
+    width: 170px;
 }
 
 .forminput {
@@ -174,8 +160,9 @@ input, select, textarea {
     height: 25px;
 }
 
-/* central container guys */
 
+
+/* central container guys */
 #container {
     position: relative;
     width: 75%;
@@ -188,7 +175,6 @@ input, select, textarea {
     display: grid;
     grid-template-columns: repeat(auto-fill, 280px);
 }
-
 
 #newToDo {
     position: absolute;
@@ -408,7 +394,7 @@ input, select, textarea {
     height: 0px;
     animation-name: byenow;
     animation-duration: 0.3s;
-    opacity: 0%
+    opacity: 0%;
 }
 
 @keyframes byenow {
@@ -436,13 +422,11 @@ input, select, textarea {
 
 #completedContainer {
     position: absolute;
-    /* right: 0px; */
     top: 300px;
     width: 260px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    /* border-top: 1.5px solid rgb(255, 145, 145); */
 }
 
 #completedList {
@@ -471,12 +455,23 @@ input, select, textarea {
     }
 }
 
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: lightcoral;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgb(0, 140, 255);
+}
+
 /* Selectors */
 
 #ex {
     position: absolute;
     left: 0px;
-    /* top: 200px; */
     width: 40px;
     border-left: 0px solid white;
     border-top-left-radius: 0px;
@@ -488,7 +483,6 @@ input, select, textarea {
 #plus {
     position: absolute;
     right: 0px;
-    /* bottom: 120px; */
     width: 40px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
@@ -507,7 +501,6 @@ input, select, textarea {
 
 
 /* Transitions */
-
 .transitionleft {
     animation-name: transitionleft;
     animation-duration: 0.4s;
@@ -540,8 +533,6 @@ input, select, textarea {
 }
 
 
-
-
 .transitionright {
     animation-name: transitionright;
     animation-duration: 0.4s;
@@ -572,16 +563,4 @@ input, select, textarea {
     100% {
         right: -300px;
     }
-}
-
-::-webkit-scrollbar {
-    width: 5px;
-}
-
-::-webkit-scrollbar-track {
-    background-color: lightcoral;
-}
-
-::-webkit-scrollbar-thumb {
-    background-color: lightgreen;
 }
