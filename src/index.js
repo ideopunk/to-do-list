@@ -10,23 +10,23 @@ console.log(todolist)
 const testers = (() => {
     function test() {
         if (todolist.list.length === 0) {
-            let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
-            let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
-            let bonusTask = todoitem('Go home', "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2022-07-11", "High");
-            let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
+            let storeTask = todoitem('Nip down to the store', "Get a funny feeling", "2020-07-11", "Low")
+            let lotteryTask = todoitem('Buy lottery ticket', "No. Could it be?", "2021-07-11", "Mid")
+            let runTask = todoitem('Run home home', "Darling! Get off the phone! Everything has changed!", "2022-07-11", "High");
+            let finishedTask = todoitem('Avoid housework', "'You know it's no good for my asthma.'", '2020-01-01', 'High');
             
             finishedTask.status = 'complete'
-            dogtask.addTag('Exercise')
-            dogtask.addTag('Pets')
-            lotteryTask.addTag('Exercise')
-            bonusTask.addTag('Pets')
+            storeTask.addTag('Exercise')
+            lotteryTask.addTag('Daring')
+            lotteryTask.addTag('Cunning')
+            lotteryTask.addTag('Eerie')
+            runTask.addTag('Eerie')
+            runTask.addTag('Exercise')
             
-            todolist.addToList(dogtask)
+            todolist.addToList(storeTask)
             todolist.addToList(lotteryTask)
+            todolist.addToList(runTask)
             todolist.addToList(finishedTask)
-            todolist.addToList(bonusTask)
-            
-            console.log(todolist.list)
         }
     }
 
