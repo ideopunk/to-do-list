@@ -114,8 +114,11 @@ input, select, textarea {
 }
 
 .slctr {
+    width: 18px;
+    position: relative;
+    left: 11px;
     border: 0px solid pink;
-    border-radius: 100%;
+    border-radius: 50%;
 }
 
 /* form guys */
