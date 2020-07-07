@@ -44,7 +44,8 @@ const sorter = (() => {
         sortForm.textContent = '';
 
         let tagList = []
-        let potentialTags = document.querySelectorAll('.tagButton')
+        let containerList = document.querySelector('#containerList')
+        let potentialTags = containerList.querySelectorAll('.tagButton')
         potentialTags.forEach((tag) => {
             tagList.push(tag.textContent)
         });
@@ -86,7 +87,6 @@ const formInterface = (() => {
             tags.forEach((tag) => {
                 newItem.addTag(tag)
             })
-            sorter.generateFilterList();
         }
 
         if (title.length === 0) {
@@ -102,6 +102,7 @@ const formInterface = (() => {
             document.querySelector('#priority').value = 'Low'
             document.querySelector('#tags').value = ''
             mainInterface.displayItem(newItem)
+            sorter.generateFilterList();
         }
         // mainInterface.generate()
     }
@@ -208,6 +209,7 @@ const userInterface = (containerListName, itemStatus) => {
         
         setTimeout(() => {
             carrier.parentNode.removeChild(carrier);
+            sorter.generateFilterList();
         }, 300);
         todolist.storageUpdate();
     };
