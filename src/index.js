@@ -357,9 +357,16 @@ const userInterface = (containerListName, itemStatus) => {
             uniqueTagElems.push(event.target.textContent)
         }
 
-
+        console.log(uniqueTagElems) // good above here....
+        
         // return all the todos that have the tag combination we want. 
         let sortedList = todolist.projectSort(uniqueTagElems)
+
+        console.log(sortedList)
+        if (sortedList.length === 0) {
+            sortedList.push('')
+        }
+
         let mainitems = document.querySelectorAll('.mainitem')
 
         for (i = 0; i < mainitems.length; i++) {
@@ -368,7 +375,6 @@ const userInterface = (containerListName, itemStatus) => {
                 if (elem.title !== temp) {
                     let test = mainitems[i]
                     test.classList.add('goodbye')
-                    console.log(test)
                 }
             }
             for (let elem of sortedList) {
@@ -380,9 +386,7 @@ const userInterface = (containerListName, itemStatus) => {
 
             if (mainitems[i].classList.contains('goodbye')) {
                 let test = mainitems[i]
-                console.log(test)
                 setTimeout(() => {
-                    console.log(test)
                     test.classList.add('hide')
                 }, 400);
             } else {
