@@ -78,7 +78,8 @@ const formInterface = (() => {
         document.querySelector('#dueDate').value = ''
         document.querySelector('#priority').value = 'Low'
         document.querySelector('#tags').value = ''
-        mainInterface.generate()
+        mainInterface.displayItem(newItem)
+        // mainInterface.generate()
     }
 
     function formgenerate() {
@@ -160,25 +161,35 @@ const userInterface = (containerListName, itemStatus) => {
             carrier.classList.remove('shorter')
 
         } else {
+            carrier.classList.add('shorter');
+            carrier.classList.remove('taller');
             let len = carrier.childNodes.length;
             for (let i = len - 1; i > 0; i--) {
                 if (carrier.childNodes[i].classList.contains('bonus')) {
                     carrier.removeChild(carrier.childNodes[i])
                 }
             }
-            carrier.classList.add('shorter');
-            carrier.classList.remove('taller');
         }
 
     }
 
+    const laterremove = () => {
+        // targ.parentNode.removeChild(targ)
+        console.log(this)
+    }
+
     // when you click the button, the item should become 'complete'
     let completeItem = () => { // CI will have to modify this / not use it. 
-        event.target.parentNode.classList.add('goodbye')
+        let carrier = event.target.parentNode;
+        carrier.classList.add('goodbye')
+        console.log(carrier)
         let item = grabItem()
         item.status = 'complete'
         console.log('completed!')
-        setTimeout(controller.listgenerate, 300);
+        completedInterface.displayItem(item)
+        setTimeout(() => {
+            carrier.parentNode.removeChild(carrier);
+        }, 300);
     };
 
     // the tag buttons should be deletable
@@ -252,6 +263,7 @@ const userInterface = (containerListName, itemStatus) => {
     const displayItem = (item) => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
+        carrier.classList.add('new')
         carrier.setAttribute('value', item.title);
 
         // colorize
@@ -372,7 +384,7 @@ const userInterface = (containerListName, itemStatus) => {
         }
     }
 
-    return { createCompleteButton, sortGenerate, generate }
+    return { createCompleteButton, displayItem, sortGenerate, generate }
 };
 
 
