@@ -19,6 +19,7 @@ button {
     font-family: Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
 }
 
+
 *,*:focus,*:hover{
     outline:none;
 }
@@ -110,6 +111,11 @@ input, select, textarea {
 
 .focused {
     border: 1px solid red;
+}
+
+.slctr {
+    border: 0px solid pink;
+    border-radius: 100%;
 }
 
 /* form guys */
@@ -224,6 +230,21 @@ input, select, textarea {
     display: block;
 }
 
+.itemname:hover {
+    color: purple;
+    animation-name: clrprpl;
+    animation-duration: 0.62s;
+}
+
+@keyframes clrprpl {
+    0% {
+        color: fuchsia;
+    }
+    100% {
+        color: purple
+    }
+}
+
 .completebutton {
     position: absolute;
     left: 221px;
@@ -256,6 +277,23 @@ input, select, textarea {
     margin-bottom: 3px;
     border-radius: 15px;
 }
+
+
+.tagButton:hover, .completebutton:hover, .newTagButton:hover, .slctr:hover {
+    background-color: rgb(248, 80, 108);
+    animation-name: clrchrry;
+    animation-duration: 0.62s;
+}
+
+@keyframes clrchrry {
+    0% {
+        background-color: pink;
+    }
+    100% {
+        background-color: rgb(248, 80, 108);
+    }
+}
+
 
 .bonus {
     animation-name: bonusanim;

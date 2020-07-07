@@ -1,12 +1,8 @@
 import './styles.css';
-// import { todoitem } from './todoitem.js'
 import { todolist, todoitem } from './todolist.js'
 
-todolist.generate();
-console.log(localStorage)
-console.log(todolist)
 
-// testers
+// testers. Fill in if user has no 
 const testers = (() => {
     function test() {
         if (todolist.list.length === 0) {
@@ -32,7 +28,7 @@ const testers = (() => {
     return { test }
 })();
 
-testers.test()
+
 
 const sorter = (() => {
 
@@ -510,6 +506,8 @@ const controller = (() => {
 
     // trigger all the generations
     const generate = () => {
+        todolist.generate();
+        testers.test()
         formInterface.formgenerate();
         menuInterface.menuInterfaceGenerate();
         listgenerate();

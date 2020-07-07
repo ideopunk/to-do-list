@@ -15,13 +15,11 @@ const todolist = (() => {
         }
         for (let i = 0; i < sensibleobject.length; i++) {
             let sensob = sensibleobject[i]
-            console.log(sensob)
             let todo = todoitem(sensob.title, sensob.description, sensob.dueDate, sensob.priority, sensob.status) 
             for (let tag of sensob.tags) {
                 todo.addTag(tag)
             }
             list[i] = todo;
-            console.log(list)
         }
     }
 
@@ -35,7 +33,7 @@ const todolist = (() => {
             for (let tag of tags) {
                 tag = String(tag)
                 
-                // ...see if it matches one of the item's tags
+                // ...give it a point if it matches one of the item's tags
                 for (let i = 0; i < item.tags.length; i++) {
                     if (item.tags[i] === tag) {
                         x++;
@@ -46,6 +44,7 @@ const todolist = (() => {
 
             let countReached = false;
 
+            // if its point count matches the total number of tags being checked, then we're happy with it. 
             if (x === tags.length) {
                 countReached = true;
             }
@@ -65,7 +64,6 @@ const todolist = (() => {
         for (let i = 0; i < list.length; i++) {
             if (list[i] === item) {
                 list.splice(i, 1);
-                console.log('spliced!')
                 break;
             }
         }
