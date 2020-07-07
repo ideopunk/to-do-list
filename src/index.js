@@ -366,18 +366,27 @@ const userInterface = (containerListName, itemStatus) => {
             for (let elem of sortedList) {
                 let temp = mainitems[i].firstChild.textContent;
                 if (elem.title !== temp) {
-                    mainitems[i].classList.add('goodbye')
-                    setTimeout(() => {
-                        mainitems[i].classList.add('hide');
-                    }, 400);
+                    let test = mainitems[i]
+                    test.classList.add('goodbye')
+                    console.log(test)
                 }
             }
             for (let elem of sortedList) {
                 let temp = mainitems[i].firstChild.textContent;
                 if (elem.title === temp) {
-                    mainitems[i].classList.remove('hide');
                     mainitems[i].classList.remove('goodbye');
                 }
+            }
+
+            if (mainitems[i].classList.contains('goodbye')) {
+                let test = mainitems[i]
+                console.log(test)
+                setTimeout(() => {
+                    console.log(test)
+                    test.classList.add('hide')
+                }, 400);
+            } else {
+                mainitems[i].classList.remove('hide')
             }
         }
 
