@@ -209,6 +209,7 @@ const userInterface = (containerListName, itemStatus) => {
         setTimeout(() => {
             carrier.parentNode.removeChild(carrier);
         }, 300);
+        todolist.storageUpdate();
     };
 
     // the tag buttons should be deletable
@@ -273,7 +274,7 @@ const userInterface = (containerListName, itemStatus) => {
     // there should be a button for adding new tags
     function createNewTagButton(carrier) {
         let newTagButton = document.createElement('button')
-        newTagButton.textContent = 'x'
+        newTagButton.textContent = '?'
         newTagButton.classList.add('newTagButton')
         newTagButton.addEventListener('click', createNewTag)
         carrier.appendChild(newTagButton)

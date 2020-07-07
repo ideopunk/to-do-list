@@ -85,9 +85,8 @@ input, select {
 .tagLine {
     width: 100px;
     position: relative;
-    left: 20%;
-    margin-top: 7px;
-    margin-bottom: 7px;
+    left: 15%;
+    margin-bottom: 14px;
     border: 0px solid red;
     border-radius: 15px;
 }
@@ -397,10 +396,12 @@ input, select {
     position: absolute;
     /* right: 0px; */
     top: 300px;
+    width: 250px;
+    max-height: 400px;
     border-right: 0px solid white;
     border-top-right-radius: 0px;
     border-bottom-right-radius: 0px;
-    overflow: hidden;
+    overflow-y: scroll;
     /* border-top: 1.5px solid rgb(255, 145, 145); */
 }
 
@@ -525,4 +526,16 @@ input, select {
     100% {
         right: -300px;
     }
+}
+
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: lightcoral;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: lightgreen;
 }

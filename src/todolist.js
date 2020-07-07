@@ -11,12 +11,9 @@ const todolist = (() => {
         if (!sensibleobject) {
             sensibleobject = 1;
         }
-        console.log(`sensibleobject: `)
-        console.log(sensibleobject)
         for (let i = 0; i < sensibleobject.length; i++) {
             list[i] = sensibleobject[i]
         }
-        console.log(`list: ${list}`)
     }
 
     let projectSort = (tags) => {
@@ -51,9 +48,6 @@ const todolist = (() => {
     
     let addToList = item => {
         list.push(item);
-        console.log(list);
-        console.log(`localstoragelength: ${window.localStorage.length}`)
-        // generate();
         storageUpdate();
         generate();
     }
@@ -62,14 +56,12 @@ const todolist = (() => {
         for (let i = 0; i < list.length; i++) {
             if (list[i] === item) {
                 list.splice(i, 1);
-                storageUpdate();
-                // generate();
                 console.log('spliced!')
                 break;
             }
         }
         storageUpdate();
-        // generate();
+        generate();
     }
 
     return {list, addToList, deleteFromList, projectSort, storageUpdate, generate }
