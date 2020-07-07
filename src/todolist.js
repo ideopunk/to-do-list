@@ -2,14 +2,17 @@ const todolist = (() => {
     let list = [];
 
     let storageUpdate = () => {
-        window.localStorage.clear();
         window.localStorage.setItem('todolist', JSON.stringify(list))
     }
 
     let generate = () => {
         list.length = 0;
-        let sensibleobject = JSON.parse(window.localStorage.todolist);
-        console.log(`sensibleobject: ${sensibleobject}`)
+        let sensibleobject = JSON.parse(window.localStorage.getItem('todolist'));
+        if (!sensibleobject) {
+            sensibleobject = 1;
+        }
+        console.log(`sensibleobject: `)
+        console.log(sensibleobject)
         for (let i = 0; i < sensibleobject.length; i++) {
             list[i] = sensibleobject[i]
         }
@@ -60,13 +63,13 @@ const todolist = (() => {
             if (list[i] === item) {
                 list.splice(i, 1);
                 storageUpdate();
-                generate();
+                // generate();
                 console.log('spliced!')
                 break;
             }
         }
         storageUpdate();
-        generate();
+        // generate();
     }
 
     return {list, addToList, deleteFromList, projectSort, storageUpdate, generate }

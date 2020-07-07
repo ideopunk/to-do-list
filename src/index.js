@@ -2,28 +2,38 @@ import './styles.css';
 import { todoitem } from './todoitem.js'
 import todolist from './todolist.js'
 
+todolist.generate();
 console.log(localStorage)
 console.log(todolist)
 
 // testers
-let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
-let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
-let bonusTask = todoitem('Go home', "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2022-07-11", "High");
-let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
+const testers = (() => {
+    function test() {
+        if (todolist.list.length === 0) {
+            let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
+            let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
+            let bonusTask = todoitem('Go home', "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa", "2022-07-11", "High");
+            let finishedTask = todoitem('Buy the moon', 'On sale', '2020-01-01', 'High');
+            
+            finishedTask.status = 'complete'
+            dogtask.addTag('Exercise')
+            dogtask.addTag('Pets')
+            lotteryTask.addTag('Exercise')
+            bonusTask.addTag('Pets')
+            
+            todolist.addToList(dogtask)
+            todolist.addToList(lotteryTask)
+            todolist.addToList(finishedTask)
+            todolist.addToList(bonusTask)
+            
+            console.log(todolist.list)
+        }
+    }
 
-finishedTask.status = 'complete'
-dogtask.addTag('Exercise')
-dogtask.addTag('Pets')
-lotteryTask.addTag('Exercise')
-bonusTask.addTag('Pets')
+    return { test }
+})();
 
-todolist.addToList(dogtask)
-todolist.addToList(lotteryTask)
-todolist.addToList(finishedTask)
-todolist.addToList(bonusTask)
-
-console.log(todolist.list)
-
+testers.test()
 
 const sorter = (() => {
 
