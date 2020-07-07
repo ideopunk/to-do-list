@@ -2,6 +2,9 @@ import './styles.css';
 import { todoitem } from './todoitem.js'
 import todolist from './todolist.js'
 
+console.log(todolist)
+// todolist.generate();
+
 // testers
 let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
 let lotteryTask = todoitem('Win lottery', "Powerball", "2021-07-11", "Mid")
@@ -19,6 +22,8 @@ todolist.addToList(lotteryTask)
 todolist.addToList(finishedTask)
 todolist.addToList(bonusTask)
 
+console.log(todolist.list)
+
 
 const sorter = (() => {
 
@@ -31,13 +36,11 @@ const sorter = (() => {
         let tagList = []
         let potentialTags = document.querySelectorAll('.tagButton')
         potentialTags.forEach((tag) => {
-            console.log(tag.textContent)
             tagList.push(tag.textContent)
         });
 
         tagList = [...new Set(tagList)];
 
-        console.log(`taglist: ${tagList}`)
 
         for (let elem of tagList) {
             let tagLine = document.createElement('button')
@@ -49,7 +52,14 @@ const sorter = (() => {
         }
     }
 
-    return { generateFilterList }
+    function removeLeftHighlighting() {
+        let tagLines = document.querySelectorAll('.tagLine');
+        tagLines.forEach((tagLine) => {
+            tagLine.classList.remove('focused')
+        })
+    }
+
+    return { removeLeftHighlighting, generateFilterList }
 })();
 
 
@@ -132,14 +142,6 @@ const userInterface = (containerListName, itemStatus) => {
     function expand() {
         let item = grabItem()
         let carrier = event.target.parentNode;
-        // carrier.classList.toggle('taller');
-        // if (carrier.classList.contains('taller')) {
-        //     carrier.classList.remove('shorter')
-        // } else {
-        //     carrier.classList.add('shorter')
-        // }
-
-
 
         if (!carrier.classList.contains('taller')) {
             let description = document.createElement('p');
@@ -184,12 +186,16 @@ const userInterface = (containerListName, itemStatus) => {
     // when you click the button, the item should become 'complete'
     let completeItem = () => { 
         let carrier = event.target.parentNode;
-        carrier.classList.add('goodbye')
-        console.log(carrier)
         let item = grabItem()
-        item.status = 'complete'
-        console.log('completed!')
-        completedInterface.displayItem(item)
+        if (containerListName === '#containerList') {
+            carrier.classList.add('goodbye')
+            item.status = 'complete'
+            completedInterface.displayItem(item)
+        } else {
+            carrier.classList.add('forever')
+            todolist.deleteFromList(item)
+        }
+        
         setTimeout(() => {
             carrier.parentNode.removeChild(carrier);
         }, 300);
@@ -198,14 +204,11 @@ const userInterface = (containerListName, itemStatus) => {
     // the tag buttons should be deletable
     function deleteTag() {
         let tag = event.target;
-        console.log('tryna delete')
         let itemcheck = tag.parentNode.parentNode.firstChild.textContent;
         tag.classList.add('byenow')
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].title === itemcheck) {
                 todolist.list[i].deleteTag(tag.textContent)
-                 // is this working? ....deleteTag isn't doing what we love.
-                console.log('delete!')
                 break;
             }
         }
@@ -213,9 +216,7 @@ const userInterface = (containerListName, itemStatus) => {
         
         setTimeout(() => {
             tag.parentNode.removeChild(tag);
-            console.log('ye')
             sorter.generateFilterList();
-            console.log('ya')
         }, 300);
     }
 
@@ -236,6 +237,10 @@ const userInterface = (containerListName, itemStatus) => {
         if (newTag) {
             if (item.tags.length > 3) {
                 alert('You have plenty of tags.')
+                return;
+            }
+            if (newTag.length > 12) {
+                alert('This tag is just too long.');
                 return;
             }
             item.addTag(newTag)
@@ -308,28 +313,17 @@ const userInterface = (containerListName, itemStatus) => {
         carrier.appendChild(tagCarrier)
 
         // add button for completion
-        if (itemStatus === 'incomplete') {
-            createCompleteButton(carrier)
-        }
+        createCompleteButton(carrier)
 
         containerList.appendChild(carrier);
     }
 
-    function removeLeftHighlighting() {
-        let tagLines = document.querySelectorAll('.tagLine');
-        tagLines.forEach((tagLine) => {
-            tagLine.classList.remove('focused')
-        })
-    }
-
     function sortGenerate() {
-        // event.target.classList.toggle('sortingtag')
-        console.log(event.target.textContent + 'ya')
+        let i;
 
         // remove existing highlighting from left menu tags
-        removeLeftHighlighting()
+        sorter.removeLeftHighlighting()
 
-        let i;
 
         // get a unique list of all the active tags.
         let tagelems = document.querySelectorAll('.sortingtag')
@@ -337,11 +331,9 @@ const userInterface = (containerListName, itemStatus) => {
         for (i = 0; i < tagelems.length; i++) {
             preUniqueTagElems.push(tagelems[i].textContent)
         }
-
-        // preUniqueTagElems.push(event.target.textContent)
         let uniqueTagElems = [...new Set(preUniqueTagElems)];
 
-
+        // if clicked tag is among the existing tags, remove it, if not, add it. 
         let x = 0;
         for (i = 0; i < uniqueTagElems.length; i++) {
             if (uniqueTagElems[i] === event.target.textContent) {
@@ -349,31 +341,48 @@ const userInterface = (containerListName, itemStatus) => {
                 x = 1;
             }
         }
-
         if (x === 0) {
             uniqueTagElems.push(event.target.textContent)
         }
 
 
-        containerList.textContent = ''
+        // return all the todos that have the tag combination we want. 
         let sortedList = todolist.projectSort(uniqueTagElems)
-        for (i = 0; i < sortedList.length; i++) {
-            if (todolist.list[i].status === itemStatus) {
-                displayItem(sortedList[i])
+        let mainitems = document.querySelectorAll('.mainitem')
+
+        for (i = 0; i < mainitems.length; i++) {
+            for (let elem of sortedList) {
+                let temp = mainitems[i].firstChild.textContent;
+                if (elem.title !== temp) {
+                    mainitems[i].classList.add('hide');
+                }
+            }
+            for (let elem of sortedList) {
+                let temp = mainitems[i].firstChild.textContent;
+                if (elem.title === temp) {
+                    mainitems[i].classList.remove('hide');
+                }
             }
         }
+
+
         const allTags = document.querySelectorAll('.tagButton')
         const tagLines = document.querySelectorAll('.tagLine')
 
+        // get rid of all existing highlights
+        allTags.forEach((btntag) => {
+            btntag.classList.remove('sortingtag')
+        })
+        
+        // add them back in if they're the right tag
         uniqueTagElems.forEach((tag) => {
-            let thevalue = tag;
             allTags.forEach((btntag) => {
-                if (btntag.textContent === thevalue) {
-                    btntag.classList.toggle('sortingtag')
+                if (btntag.textContent === tag) {
+                    btntag.classList.add('sortingtag')
                 }
             })
 
-            // bold the tags in the left menu accordingl.
+            // bold the tags in the left menu accordingly.
             tagLines.forEach((tagline) => {
                 if (tagline.textContent === tag) {
                     tagline.classList.add('focused');
@@ -381,20 +390,12 @@ const userInterface = (containerListName, itemStatus) => {
             })
         })
 
-        // you must add in a function like the above forEach just to color in the sortButtons!
-
-        // let testTags = document.querySelectorAll('.tagButton')
-        // for (let tag of testTags) {
-        //     if (tag.classList.contains('sortingtag')) {
-        //         console.log(tag)
-        //     }
-        // }
     }
 
     // initialize list
     const generate = () => {
         containerList.textContent = ''
-        removeLeftHighlighting()
+        sorter.removeLeftHighlighting()
         if (containerListName === '#completedList') {
             let completedbutton = document.querySelector('#returncompleted')
             completedbutton.addEventListener('click', selectorController.completeToggle)
@@ -491,5 +492,5 @@ const controller = (() => {
 })();
 
 
-
+// todolist.generate();
 controller.generate()

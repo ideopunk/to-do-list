@@ -1,13 +1,33 @@
 const todolist = (() => {
-    const list = [];
-    
+    let list = [];
+
+    let storageUpdate = () => {
+        localStorage.clear();
+        for (let i = 0; i < list.length; i++) {
+            console.log(`listi: ${list[i]}`)
+            localStorage.setItem(i, JSON.stringify(list[i]))
+        }
+
+        localStorage.setItem()
+    }
+
+    let generate = () => {
+        list.length = 0;
+        for (let i = 0; i < localStorage.length; i++) {
+            console.log(localStorage.getItem[i])
+            console.log(JSON.parse(localStorage.getItem[i]))
+            list.push(JSON.parse(localStorage.getItem(i)));
+            console.log('newlist')
+            console.log(list)
+        }
+        console.log(list)
+        // todolist.list = JSON.parse(localStorage.getItem('storagelist'));
+    }
+
     let projectSort = (tags) => {
-        // let tags = [...new Set(pretags)];
-        console.log("project sort tags: ")
-        console.log(tags)
+        
         // for each item...
         let sortedList = list.filter(function(item) { 
-            
             let x = 0;
 
             // ...for each tag in the list...
@@ -35,19 +55,28 @@ const todolist = (() => {
     }
     
     let addToList = item => {
-        list.push(item)
+        list.push(item);
+        console.log(list);
+        console.log(`localstoragelength: ${localStorage.length}`)
+        storageUpdate();
+        generate();
     }
     
     let deleteFromList = item => {
         for (let i = 0; i < list.length; i++) {
-            if (list[i] === list) {
+            if (list[i] === item) {
                 list.splice(i, 1);
+                storageUpdate();
+                generate();
+                console.log('spliced!')
                 break;
             }
         }
+        storageUpdate();
+        generate();
     }
 
-    return {list, addToList, deleteFromList, projectSort}
+    return {list, addToList, deleteFromList, projectSort, storageUpdate, generate }
 })();
 
 export default todolist;
