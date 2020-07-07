@@ -2,6 +2,7 @@ import './styles.css';
 import { todoitem } from './todoitem.js'
 import todolist from './todolist.js'
 
+console.log(localStorage)
 console.log(todolist)
 
 // testers
@@ -281,9 +282,10 @@ const userInterface = (containerListName, itemStatus) => {
     const displayItem = (item) => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
-        carrier.classList.add('new');
         if (containerListName === '#containerList') { 
             carrier.classList.add('mainitem')
+        } else {
+            carrier.classList.add('new');
         }
         carrier.setAttribute('value', item.title);
 
@@ -353,13 +355,17 @@ const userInterface = (containerListName, itemStatus) => {
             for (let elem of sortedList) {
                 let temp = mainitems[i].firstChild.textContent;
                 if (elem.title !== temp) {
-                    mainitems[i].classList.add('hide');
+                    mainitems[i].classList.add('goodbye')
+                    setTimeout(() => {
+                        mainitems[i].classList.add('hide');
+                    }, 400);
                 }
             }
             for (let elem of sortedList) {
                 let temp = mainitems[i].firstChild.textContent;
                 if (elem.title === temp) {
                     mainitems[i].classList.remove('hide');
+                    mainitems[i].classList.remove('goodbye');
                 }
             }
         }

@@ -2,19 +2,18 @@ const todolist = (() => {
     let list = [];
 
     let storageUpdate = () => {
-        localStorage.clear();
-        localStorage.setItem('todolist', JSON.stringify(list))
+        window.localStorage.clear();
+        window.localStorage.setItem('todolist', JSON.stringify(list))
     }
 
     let generate = () => {
         list.length = 0;
-        let sensibleobject = JSON.parse(localStorage.todolist);
+        let sensibleobject = JSON.parse(window.localStorage.todolist);
         console.log(`sensibleobject: ${sensibleobject}`)
-        console.log(`list: ${list}`)
         for (let i = 0; i < sensibleobject.length; i++) {
-            list.push(sensibleobject[i])
+            list[i] = sensibleobject[i]
         }
-        // todolist.list = JSON.parse(localStorage.getItem('storagelist'));
+        console.log(`list: ${list}`)
     }
 
     let projectSort = (tags) => {
@@ -50,8 +49,8 @@ const todolist = (() => {
     let addToList = item => {
         list.push(item);
         console.log(list);
-        console.log(`localstoragelength: ${localStorage.length}`)
-        generate();
+        console.log(`localstoragelength: ${window.localStorage.length}`)
+        // generate();
         storageUpdate();
         generate();
     }
