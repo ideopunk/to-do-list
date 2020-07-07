@@ -134,8 +134,8 @@ const userInterface = (containerListName, itemStatus) => {
         // } else {
         //     carrier.classList.add('shorter')
         // }
-        
-        
+
+
 
         if (!carrier.classList.contains('taller')) {
             let description = document.createElement('p')
@@ -173,13 +173,9 @@ const userInterface = (containerListName, itemStatus) => {
 
     }
 
-    const laterremove = () => {
-        // targ.parentNode.removeChild(targ)
-        console.log(this)
-    }
 
     // when you click the button, the item should become 'complete'
-    let completeItem = () => { // CI will have to modify this / not use it. 
+    let completeItem = () => { // CI will have to modify this / not use it.
         let carrier = event.target.parentNode;
         carrier.classList.add('goodbye')
         console.log(carrier)
@@ -197,19 +193,21 @@ const userInterface = (containerListName, itemStatus) => {
         let tag = event.target;
         console.log('tryna delete')
         let itemcheck = tag.parentNode.parentNode.firstChild.textContent;
-        tag.parentNode.removeChild(tag)
+        tag.classList.add('byenow')
         for (let i = 0; i < todolist.list.length; i++) {
             if (todolist.list[i].title === itemcheck) {
                 todolist.list[i].deleteTag(tag.textContent)
-                sorter.generateFilterList() // is this working? ....deleteTag isn't doing what we love. 
+                sorter.generateFilterList() // is this working? ....deleteTag isn't doing what we love.
                 console.log('delete!')
                 break;
             }
         }
-
+        setTimeout(() => {
+            tag.parentNode.removeChild(tag);
+        }, 300);
     }
 
-    // there should be little buttons for each tag 
+    // there should be little buttons for each tag
     function createTagButton(tag, tagCarrier) {
         let tagButton = document.createElement('button')
         tagButton.classList.add('tagButton')
@@ -263,7 +261,10 @@ const userInterface = (containerListName, itemStatus) => {
     const displayItem = (item) => {
         let carrier = document.createElement('div');
         carrier.classList.add('item');
-        carrier.classList.add('new')
+        carrier.classList.add('new');
+        if (containerListName === '#containerList') { 
+            carrier.classList.add('mainitem')
+        }
         carrier.setAttribute('value', item.title);
 
         // colorize
@@ -278,11 +279,11 @@ const userInterface = (containerListName, itemStatus) => {
         // add title
         createItemName(carrier, item)
 
-        
+
         // add button for adding new tags
         createNewTagButton(carrier)
 
-        // add button for each tag 
+        // add button for each tag
         let tagCarrier = document.createElement('div')
         tagCarrier.classList.add('tagCarrier')
         for (let tag of item.tags) {
@@ -298,19 +299,23 @@ const userInterface = (containerListName, itemStatus) => {
         containerList.appendChild(carrier);
     }
 
-    // CI will not need sortGenerate
+    function removeLeftHighlighting() {
+        let tagLines = document.querySelectorAll('.tagLine');
+        tagLines.forEach((tagLine) => {
+            tagLine.classList.remove('focused')
+        })
+    }
+
     function sortGenerate() {
         // event.target.classList.toggle('sortingtag')
         console.log(event.target.textContent + 'ya')
 
         // remove existing highlighting from left menu tags
-        const tagLines = document.querySelectorAll('.tagLine')
-        tagLines.forEach((tagLine) => {
-            tagLine.classList.remove('focused')
-        })
+        removeLeftHighlighting()
+
         let i;
 
-        // get a unique list of all the active tags. 
+        // get a unique list of all the active tags.
         let tagelems = document.querySelectorAll('.sortingtag')
         let preUniqueTagElems = []
         for (i = 0; i < tagelems.length; i++) {
@@ -342,6 +347,7 @@ const userInterface = (containerListName, itemStatus) => {
             }
         }
         const allTags = document.querySelectorAll('.tagButton')
+        const tagLines = document.querySelectorAll('.tagLine')
 
         uniqueTagElems.forEach((tag) => {
             let thevalue = tag;
@@ -354,7 +360,7 @@ const userInterface = (containerListName, itemStatus) => {
             // bold the tags in the left menu accordingl.
             tagLines.forEach((tagline) => {
                 if (tagline.textContent === tag) {
-                    tagline.classList.toggle('focused');
+                    tagline.classList.add('focused');
                 }
             })
         })
@@ -365,14 +371,14 @@ const userInterface = (containerListName, itemStatus) => {
         // for (let tag of testTags) {
         //     if (tag.classList.contains('sortingtag')) {
         //         console.log(tag)
-        //     }    
+        //     }
         // }
-
     }
 
     // initialize list
     const generate = () => {
         containerList.textContent = ''
+        removeLeftHighlighting()
         if (containerListName === '#completedList') {
             let completedbutton = document.querySelector('#returncompleted')
             completedbutton.addEventListener('click', selectorController.completeToggle)
@@ -393,6 +399,8 @@ const completedInterface = userInterface('#completedList', 'complete');
 
 
 const selectorController = (() => {
+    const container = document.querySelector('#container')
+    
     const filterToggler = document.querySelector('#ex')
     const filter = document.querySelector('#sortForm');
 
@@ -417,6 +425,12 @@ const selectorController = (() => {
         formToggler.classList.toggle('hide');
         formToggler.classList.toggle('transitionright')
         formToggler.classList.toggle('disappearright')
+        
+        container.classList.toggle('transparent')
+        filterToggler.classList.toggle('transparent');
+        filter.classList.toggle('transparent');
+        completedToggler.classList.toggle('transparent');
+        complete.classList.toggle('transparent');
 
         form.classList.remove('hide');
         form.classList.toggle('transitionright');
@@ -439,7 +453,7 @@ const selectorController = (() => {
         completedToggler.addEventListener('click', completeToggle)
     }
 
-    return { filterToggle, formToggle, completeToggle, generate }
+    return { filterToggle, formToggle, completeToggle, generate, }
 })();
 
 
