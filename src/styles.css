@@ -43,7 +43,7 @@ button {
     }
 }
 
-input, select {
+input, select, textarea {
     margin-top: 5px;
     margin-bottom: 5px;
     border: 1px solid pink;
@@ -51,6 +51,8 @@ input, select {
     position: absolute;
     right: 3px;
     text-indent: 5px;
+    resize: none;
+    width: 170px;
 }
 
 /* applies to all three */
