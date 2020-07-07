@@ -142,7 +142,10 @@ const userInterface = (containerListName, itemStatus) => {
 
 
         if (!carrier.classList.contains('taller')) {
-            let description = document.createElement('p')
+            let description = document.createElement('p');
+            description.classList.add('descriptiontext')
+            let descriptiondiv = document.createElement('div');
+            descriptiondiv.appendChild(description);
             description.textContent = item.description;
             description.classList.add('description');
 
@@ -154,7 +157,7 @@ const userInterface = (containerListName, itemStatus) => {
             priority.textContent = `Priority: ${item.priority}`;
             priority.classList.add('priority')
 
-            let props = [description, dueDate, priority];
+            let props = [descriptiondiv, dueDate, priority];
 
             for (let i = 0; i < props.length; i++) {
                 props[i].classList.add('bonus');
@@ -231,6 +234,10 @@ const userInterface = (containerListName, itemStatus) => {
         let item = grabItem()
         let newTag = prompt("New tag");
         if (newTag) {
+            if (item.tags.length > 3) {
+                alert('You have plenty of tags.')
+                return;
+            }
             item.addTag(newTag)
             let carrier = event.target.parentNode;
             let tagCarrier = carrier.childNodes[2];
