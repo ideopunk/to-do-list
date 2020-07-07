@@ -3,7 +3,6 @@ import { todoitem } from './todoitem.js'
 import todolist from './todolist.js'
 
 console.log(todolist)
-// todolist.generate();
 
 // testers
 let dogtask = todoitem('Walk dog', "Just around the block", "2020-07-11", "Low")
@@ -492,5 +491,4 @@ const controller = (() => {
 })();
 
 
-// todolist.generate();
 controller.generate()

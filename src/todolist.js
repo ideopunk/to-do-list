@@ -3,24 +3,17 @@ const todolist = (() => {
 
     let storageUpdate = () => {
         localStorage.clear();
-        for (let i = 0; i < list.length; i++) {
-            console.log(`listi: ${list[i]}`)
-            localStorage.setItem(i, JSON.stringify(list[i]))
-        }
-
-        localStorage.setItem()
+        localStorage.setItem('todolist', JSON.stringify(list))
     }
 
     let generate = () => {
         list.length = 0;
-        for (let i = 0; i < localStorage.length; i++) {
-            console.log(localStorage.getItem[i])
-            console.log(JSON.parse(localStorage.getItem[i]))
-            list.push(JSON.parse(localStorage.getItem(i)));
-            console.log('newlist')
-            console.log(list)
+        let sensibleobject = JSON.parse(localStorage.todolist);
+        console.log(`sensibleobject: ${sensibleobject}`)
+        console.log(`list: ${list}`)
+        for (let i = 0; i < sensibleobject.length; i++) {
+            list.push(sensibleobject[i])
         }
-        console.log(list)
         // todolist.list = JSON.parse(localStorage.getItem('storagelist'));
     }
 
@@ -58,6 +51,7 @@ const todolist = (() => {
         list.push(item);
         console.log(list);
         console.log(`localstoragelength: ${localStorage.length}`)
+        generate();
         storageUpdate();
         generate();
     }
