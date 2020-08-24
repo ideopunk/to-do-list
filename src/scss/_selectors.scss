@@ -1,0 +1,29 @@
+/* Selectors */
+
+#ex {
+	position: absolute;
+	left: 0px;
+	width: 40px;
+	border-left: 0px solid white;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+#plus {
+	position: absolute;
+	right: 0px;
+	width: 40px;
+	border-right: 0px solid white;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
+#checkmark {
+	position: absolute;
+	right: 0px;
+	top: 300px;
+	width: 40px;
+	border-right: 0px solid white;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}

@@ -1,0 +1,63 @@
+/* Transitions */
+.transitionleft {
+	animation-name: transitionleft;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+}
+
+@keyframes transitionleft {
+	0% {
+		left: -150px;
+	}
+	100% {
+		left: 0px;
+	}
+}
+
+.disappearleft {
+	animation-name: disappearleft;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+	left: -152px;
+}
+
+@keyframes disappearleft {
+	0% {
+		left: 0px;
+	}
+	100% {
+		left: -150px;
+	}
+}
+
+.transitionright {
+	animation-name: transitionright;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+	right: 0px;
+}
+
+@keyframes transitionright {
+	0% {
+		right: -300px;
+	}
+	100% {
+		right: 0px;
+	}
+}
+
+.disappearright {
+	animation-name: disappearright;
+	animation-duration: 0.4s;
+	animation-timing-function: linear;
+	right: -302px;
+}
+
+@keyframes disappearright {
+	0% {
+		right: 0px;
+	}
+	100% {
+		right: -300px;
+	}
+}

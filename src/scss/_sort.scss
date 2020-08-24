@@ -1,0 +1,36 @@
+/* sort guys */
+#sortList {
+	border-bottom: 1px solid red;
+}
+
+#sortForm {
+	display: grid;
+	position: relative;
+	width: 150px;
+	border-left: 0px solid white;
+	border-top-left-radius: 0px;
+	border-bottom-left-radius: 0px;
+}
+
+.tagLine {
+	width: 100px;
+	position: relative;
+	left: 15%;
+	margin-bottom: 14px;
+	border: 0px solid red;
+	border-radius: 15px;
+}
+
+#clear {
+	top: 20%;
+	color: fuchsia;
+	background-color: inherit;
+}
+
+.slctr {
+	width: 18px;
+	position: relative;
+	left: 11px;
+	border: 0px solid pink;
+	border-radius: 50%;
+}
