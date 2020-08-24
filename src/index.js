@@ -1,4 +1,4 @@
-import './scss/global'
+import "./scss/global";
 import { todolist, todoitem } from "./todolist.js";
 
 // testers. Fill in if user has no
@@ -94,7 +94,13 @@ const formInterface = (() => {
 		let dueDate = document.querySelector("#dueDate").value;
 		let priority = document.querySelector("#priority").value;
 		let tags = document.querySelector("#tags").value;
-		let newItem = todoitem(title, description, dueDate, priority, "incomplete");
+		let newItem = todoitem(
+			title,
+			description,
+			dueDate,
+			priority,
+			"incomplete"
+		);
 		if (tags.length > 0) {
 			tags = tags.split(" ");
 			tags.forEach((tag) => {
@@ -427,7 +433,10 @@ const userInterface = (containerListName, itemStatus) => {
 		sorter.removeLeftHighlighting();
 		if (containerListName === "#completedList") {
 			let completedbutton = document.querySelector("#returncompleted");
-			completedbutton.addEventListener("click", selectorController.completeToggle);
+			completedbutton.addEventListener(
+				"click",
+				selectorController.completeToggle
+			);
 		}
 		for (let i = 0; i < todolist.list.length; i++) {
 			if (todolist.list[i].status === itemStatus) {
@@ -456,12 +465,18 @@ const selectorController = (() => {
 
 	function filterToggle() {
 		filterToggler.classList.toggle("hide");
-		filterToggler.classList.toggle("transitionleft");
-		filterToggler.classList.toggle("disappearleft");
+		// filterToggler.classList.toggle("transitionleft");
+		// filterToggler.classList.toggle("disappearleft");
+
+		filterToggler.classList.toggle("transitionright");
+		filterToggler.classList.toggle("disappearright");
 
 		filter.classList.remove("hide");
-		filter.classList.toggle("transitionleft");
-		filter.classList.toggle("disappearleft");
+		// filter.classList.toggle("transitionleft");
+		// filter.classList.toggle("disappearleft");
+
+		filter.classList.toggle("transitionright");
+		filter.classList.toggle("disappearright");
 	}
 
 	function formToggle() {

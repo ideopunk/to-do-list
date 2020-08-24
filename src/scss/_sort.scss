@@ -1,16 +1,17 @@
 /* sort guys */
+#sortForm {
+	display: grid;
+	position: absolute;
+	width: 150px;
+	border-right: 0px solid white;
+	border-top-right-radius: 0px;
+	border-bottom-right-radius: 0px;
+}
+
 #sortList {
 	border-bottom: 1px solid red;
 }
 
-#sortForm {
-	display: grid;
-	position: relative;
-	width: 150px;
-	border-left: 0px solid white;
-	border-top-left-radius: 0px;
-	border-bottom-left-radius: 0px;
-}
 
 .tagLine {
 	width: 100px;
