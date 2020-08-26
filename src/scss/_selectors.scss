@@ -1,5 +1,6 @@
 /* Selectors */
 
+
 @mixin selector($top) {
 	position: absolute;
 	width: 40px;
@@ -8,6 +9,7 @@
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;	
 	top: $top;
+
 }
 
 @mixin phoneselector($left) {
@@ -18,6 +20,8 @@
 		border-bottom-left-radius: 0px;
 		border-bottom-right-radius: 0px;	
 		left: $left;
+		display: flex;
+		justify-content: center;
 }
 
 #ex {
@@ -48,4 +52,10 @@
 	@media (max-width: 1023px) {
 		@include phoneselector(200px)
 	}
+}
+
+.slctr {
+	width: 2ch;
+	border: 0px solid pink;
+	border-radius: 50%;
 }

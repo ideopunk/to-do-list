@@ -1,6 +1,7 @@
 /* sort guys */
 #sortForm {
-	display: grid;
+	display: flex;
+	flex-direction: column;
 	position: absolute;
 	width: 150px;
 	height: fit-content;
@@ -9,9 +10,14 @@
 	border-bottom-right-radius: 0px;
 }
 
+#sorttop {
+	height: 50px;
+}
+
 @media (max-width: 1023px) {
 	#sortForm {
 		display: flex;
+		flex-direction: row;
 		width: 96%;
 		left: 2%;
 		height: 100%;
@@ -22,6 +28,7 @@
 
 	#sorttop {
 		display: flex;
+		height: 100%;
 		width: 100px;
 		justify-content: center;
 		align-items: center;
@@ -30,16 +37,25 @@
 
 #sortList {
 	border-bottom: 1px solid red;
+	border-top: 1px solid red;
 	display: flex;
-	flex-wrap: wrap;
-	align-content: center;
+	flex-direction: column;
+	flex-wrap: nowrap;
+	align-items: center;
+	height: fit-content;
 	justify-content: space-around;
+	padding-top: 20px;
+	padding-bottom: 20px;
 }
 
 @media (max-width: 1023px) {
 	#sortList {
+		padding: 0;
+		height: 100%;
 		width: 100%;
-
+		flex-direction: row;
+		flex-wrap: wrap;
+		border-top-width: 0px;
 		border-bottom-width: 0px;
 		border-left: 1px solid red;
 		border-right: 1px solid red;
@@ -53,16 +69,15 @@
 	border-radius: 15px;
 }
 
+@media (max-width: 1023px) {
+	.tagLine {
+		margin: 5px;
+	}
+}
+
 #clear {
 	top: 20%;
 	color: fuchsia;
 	background-color: inherit;
 }
 
-.slctr {
-	width: 18px;
-	position: relative;
-	left: 11px;
-	border: 0px solid pink;
-	border-radius: 50%;
-}
