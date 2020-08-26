@@ -3,22 +3,53 @@
 	display: grid;
 	position: absolute;
 	width: 150px;
-	border-right: 0px solid white;
+	height: fit-content;
+	border-right-width: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
 
-#sortList {
-	border-bottom: 1px solid red;
+@media (max-width: 1023px) {
+	#sortForm {
+		display: flex;
+		width: 96%;
+		left: 2%;
+		height: 100%;
+		border-bottom-left-radius: 0px;
+		border-top-right-radius: 15px;
+		border-right-width: 1px;
+	}
+
+	#sorttop {
+		display: flex;
+		width: 100px;
+		justify-content: center;
+		align-items: center;
+	}
 }
 
+#sortList {
+	border-bottom: 1px solid red;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: center;
+	justify-content: space-around;
+}
+
+@media (max-width: 1023px) {
+	#sortList {
+		width: 100%;
+
+		border-bottom-width: 0px;
+		border-left: 1px solid red;
+		border-right: 1px solid red;
+	}
+}
 
 .tagLine {
 	width: 100px;
-	position: relative;
-	left: 15%;
-	margin-bottom: 14px;
 	border: 0px solid red;
+	margin: 10px;
 	border-radius: 15px;
 }
 

@@ -56,13 +56,27 @@ button {
 	position: relative;
 }
 
+@media (max-width: 1023px) {
+	#stuff {
+		width: 100%;
+	}
+}
+
 .menu {
 	margin: 10px;
 	height: 20px;
 	position: relative;
 	display: flex;
 	justify-content: center;
-	align-content: center;
+	align-items: center;
+}
+
+@media (max-width: 1023px) {
+	.menu {
+		height: 100%;
+		width: 100px;
+		margin: 0px;
+	}
 }
 
 .hide {

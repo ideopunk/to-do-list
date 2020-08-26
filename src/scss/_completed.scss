@@ -9,6 +9,13 @@
 	border-bottom-right-radius: 0px;
 }
 
+@media (max-width: 1023px) {
+	#completedContainer {
+		position: static;
+		display: flex;
+	}
+}
+
 #completedList {
 	max-height: 330px;
 	overflow-y: scroll;
