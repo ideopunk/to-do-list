@@ -1,25 +1,51 @@
 /* Selectors */
 
-@mixin selector {
+@mixin selector($top) {
 	position: absolute;
 	width: 40px;
 	right: 0px;
 	border-right: 0px solid white;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;	
+	top: $top;
+}
+
+@mixin phoneselector($left) {
+		position: absolute;
+		width: 40px;
+		bottom: 0px;
+		border-bottom: 0px solid white;
+		border-bottom-left-radius: 0px;
+		border-bottom-right-radius: 0px;	
+		left: $left;
 }
 
 #ex {
-	@include selector;
-	top: 120px;
+	@media (min-width: 1024px) {
+		@include selector(120px)
+	}
+
+	@media (max-width: 1023px) {
+		@include phoneselector(120px)
+	}
 }
 
 #plus {
-	@include selector;
-	top: 40px;
+	@media (min-width: 1024px) {
+		@include selector(40px)
+	}
+
+	@media (max-width: 1023px) {
+		@include phoneselector(40px)
+	}
 }
 
 #checkmark {
-	@include selector;
-	top: 200px;
+	@media (min-width: 1024px) {
+		@include selector(200px)
+	}
+
+	@media (max-width: 1023px) {
+		@include phoneselector(200px)
+	}
 }
