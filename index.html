@@ -11,6 +11,15 @@
 </head>
 
 <body>
+
+
+    <!-- Main menu -->
+    <div id='container' class=''>
+
+        <div id='containerList'></div>
+    </div>
+
+    <div id="stuff">
     <!-- Selectors -->
     <div class='bigboi transitionright' title='Filter todos' id='ex'><p class='slctr'>#</p></div>
     <div class='bigboi transitionright' title='Add todo' id='plus'><p class='slctr'>+</p></div>
@@ -24,15 +33,11 @@
             <button id='clear'>Clear All</button>
         </div>
     </div>
-
-    <!-- Main menu -->
-    <div id='container' class=''>
-
-        <div id='containerList'></div>
-    </div>
     
     <!-- New item form -->
-    <div id="newItemForm" class='hide disappearright bigboi' >
+    <!-- <div id="newItemForm" class='hide disappearright bigboi' > -->
+
+    <div id="newItemForm" class='transitionright bigboi' >
         <div class='forminput'> 
             <label class='formlabel' for='title' >Title</label>
             <input id='title' name='title' maxlength='20'>
@@ -45,7 +50,7 @@
             <label class='formlabel' for='dueDate'>Due Date</label>
             <input id='dueDate' type='date' name='dueDate'>
         </div>
-        <div class='forminput'>
+        <div class='forminput' id="priority-div">
             <label class='formlabel' for='priority'>Priority Level</label>
             <select id='priority'>
                 <option value="High">High</option>
@@ -70,6 +75,7 @@
         <div id='completedList'></div>
     </div>
 
+    </div>
     <script src='main.js'></script>
 </body>
 
