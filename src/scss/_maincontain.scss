@@ -1,7 +1,7 @@
 /* central container guys */
 #container {
-	position: relative;
-	width: 75%;
+	flex: 1 1 100%;
+	border: 1px solid red;
 }
 
 #containerList {

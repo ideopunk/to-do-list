@@ -11,7 +11,6 @@ body {
 	font-family: Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
 	display: flex;
 	margin: 0px;
-	margin-top: 15px;
 	overflow: hidden;
 }
 
@@ -42,6 +41,13 @@ button {
 	overflow: hidden;
 }
 
+#stuff {
+	flex: 0 0 260px;
+	box-sizing: border-box;
+	border: 1px solid red;
+	position: relative;
+}
+
 .menu {
 	margin: 10px;
 	height: 20px;
@@ -57,7 +63,7 @@ button {
 }
 
 .transparent {
-	opacity: 45%;
+	opacity: 0.5;
 }
 
 .focused {
