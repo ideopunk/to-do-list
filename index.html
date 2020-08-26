@@ -20,60 +20,61 @@
     </div>
 
     <div id="stuff">
-    <!-- Selectors -->
-    <div class='bigboi transitionright' title='Filter todos' id='ex'><p class='slctr'>#</p></div>
-    <div class='bigboi transitionright' title='Add todo' id='plus'><p class='slctr'>+</p></div>
-    <div class='bigboi transitionright' title='Completed todos' id='checkmark'><p class='slctr'>√</p></div>
+            
+        <!-- Selectors -->
+        <div class='bigboi transitionright' title='Filter todos' id='ex'><p class='slctr'>#</p></div>
+        <div class='bigboi transitionright' title='Add todo' id='plus'><p class='slctr'>+</p></div>
+        <div class='bigboi transitionright' title='Completed todos' id='checkmark'><p class='slctr'>√</p></div>
 
-    <!-- Filter menu -->
-    <div class='hide disappearright bigboi' id='sortForm'>
-        <div id='sorttop'><p>Filter</p></div>
-        <div id='sortList'></div>
-        <div class='menu'>
-            <button id='clear'>Clear All</button>
+        <!-- Filter menu -->
+        <div class='hide disappearright bigboi' id='sortForm'>
+            <div id='sorttop'><p>Filter</p></div>
+            <div id='sortList'></div>
+            <div class='menu'>
+                <button id='clear'>Clear All</button>
+            </div>
         </div>
-    </div>
-    
-    <!-- New item form -->
-    <!-- <div id="newItemForm" class='hide disappearright bigboi' > -->
+        
+        <!-- New item form -->
+        <div id="newItemForm" class='hide disappearright bigboi' >
 
-    <div id="newItemForm" class='transitionright bigboi' >
-        <div class='forminput'> 
-            <label class='formlabel' for='title' >Title</label>
-            <input id='title' name='title' maxlength='20'>
+        <!-- <div id="newItemForm" class='transitionright bigboi' > -->
+            <div class='forminput'> 
+                <label class='formlabel' for='title' >Title</label>
+                <input id='title' name='title' maxlength='20'>
+            </div>
+            <div class='formdescription forminput'>
+                <label class='formlabel' for='description'>Description</label>
+                <textarea id='description' name='description' maxlength="140"></textarea>
+            </div>
+            <div id='formduedate' class='forminput'>
+                <label class='formlabel' for='dueDate'>Due Date</label>
+                <input id='dueDate' type='date' name='dueDate'>
+            </div>
+            <div class='forminput' id="priority-div">
+                <label class='formlabel' for='priority'>Priority Level</label>
+                <select id='priority'>
+                    <option value="High">High</option>
+                    <option value="Mid">Mid</option>
+                    <option value="Low">Low</option>
+                </select>
+            </div>
+            <div class='forminput'>
+                <label class='formlabel' for='tags'>Tags</label>
+                <input id='tags' name='tags' placeholder='Separate tags with spaces'>
+            </div>
+            <div id='divsubmit' class='forminput'>
+                <button id='formsubmit'>Submit</button>
+            </div>
         </div>
-        <div class='formdescription forminput'>
-            <label class='formlabel' for='description'>Description</label>
-            <textarea id='description' name='description' maxlength="140"></textarea>
-        </div>
-        <div id='formduedate' class='forminput'>
-            <label class='formlabel' for='dueDate'>Due Date</label>
-            <input id='dueDate' type='date' name='dueDate'>
-        </div>
-        <div class='forminput' id="priority-div">
-            <label class='formlabel' for='priority'>Priority Level</label>
-            <select id='priority'>
-                <option value="High">High</option>
-                <option value="Mid">Mid</option>
-                <option value="Low">Low</option>
-            </select>
-        </div>
-        <div class='forminput'>
-            <label class='formlabel' for='tags'>Tags</label>
-            <input id='tags' name='tags' placeholder='Separate tags with spaces'>
-        </div>
-        <div id='divsubmit' class='forminput'>
-            <button id='formsubmit'>Submit</button>
-        </div>
-    </div>
 
-    <!-- Completed items -->
-    <div id='completedContainer' class='hide disappearright bigboi'>
-        <div class='menu'>
-            <button id='returncompleted'>Completed Items</button>
+        <!-- Completed items -->
+        <div id='completedContainer' class='hide disappearright bigboi'>
+            <div class='menu'>
+                <button id='returncompleted'>Completed Items</button>
+            </div>
+            <div id='completedList'></div>
         </div>
-        <div id='completedList'></div>
-    </div>
 
     </div>
     <script src='main.js'></script>
