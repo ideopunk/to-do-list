@@ -22,12 +22,12 @@
     <div id="stuff">
             
         <!-- Selectors -->
-        <div class='bigboi transitionright' title='Filter todos' id='ex'><p class='slctr'>#</p></div>
-        <div class='bigboi transitionright' title='Add todo' id='plus'><p class='slctr'>+</p></div>
-        <div class='bigboi transitionright' title='Completed todos' id='checkmark'><p class='slctr'>√</p></div>
+        <div class='bigboi show' title='Filter todos' id='ex'><p class='slctr'>#</p></div>
+        <div class='bigboi show' title='Add todo' id='plus'><p class='slctr'>+</p></div>
+        <div class='bigboi show' title='Completed todos' id='checkmark'><p class='slctr'>√</p></div>
 
         <!-- Filter menu -->
-        <div class='hide disappearright bigboi' id='sortForm'>
+        <div class='hide disappear bigboi' id='sortForm'>
             <div id='sorttop'><p>Filter</p></div>
             <div id='sortList'></div>
             <div class='menu'>
@@ -36,9 +36,9 @@
         </div>
         
         <!-- New item form -->
-        <div id="newItemForm" class='hide disappearright bigboi' >
+        <div id="newItemForm" class='hide disappear bigboi' >
 
-        <!-- <div id="newItemForm" class='transitionright bigboi' > -->
+        <!-- <div id="newItemForm" class='show bigboi' > -->
             <div class='forminput'> 
                 <label class='formlabel' for='title' >Title</label>
                 <input id='title' name='title' maxlength='20'>
@@ -69,8 +69,8 @@
         </div>
 
         <!-- Completed items -->
-        <div id='completedContainer' class='hide disappearright bigboi'>
-            <div class='menu'>
+        <div id='completedContainer' class='hide disappear bigboi'>
+            <div class='menu' id="completed-menu">
                 <button id='returncompleted'>Completed Items</button>
             </div>
             <div id='completedList'></div>

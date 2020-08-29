@@ -1,63 +1,36 @@
 /* Transitions */
 
-.transitionright {
-	animation-name: transitionright;
+.show {
+	animation-name: show;
 	animation-duration: 0.4s;
 	animation-timing-function: linear;
-	right: 0px;
+	opacity: 1;
 }
 
-@keyframes transitionright {
+@keyframes show {
 	0% {
-		right: -300px;
+		opacity: 0;
 	}
 	100% {
-		right: 0px;
+		opacity: 1;
 	}
 }
 
-@media (max-width: 1023px) {
-	.transitionright {
-		bottom: 0;
-	}
 
-	@keyframes transitionright {
-		0% {
-			bottom: -300px;
-		}
-		100% {
-			bottom: 0px;
-		}
-	}
-}
 
-.disappearright {
-	animation-name: disappearright;
+.disappear {
+	animation-name: disappear;
 	animation-duration: 0.4s;
 	animation-timing-function: linear;
-	right: -302px;
+	opacity: 0;
+	display: none !important;
 }
 
-@keyframes disappearright {
+@keyframes disappear {
 	0% {
-		right: 0px;
+		opacity: 1;
 	}
 	100% {
-		right: -300px;
-	}
-}
-
-@media (max-width: 1023px) {
-	.disappearright {
-		bottom: -300;
-	}
-
-	@keyframes transitionright {
-		0% {
-			bottom: 0;
-		}
-		100% {
-			bottom: -300px;
-		}
+		opacity: 0;
 	}
 }

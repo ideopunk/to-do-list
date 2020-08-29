@@ -472,21 +472,21 @@ const selectorController = (() => {
 		// filterToggler.classList.toggle("transitionleft");
 		// filterToggler.classList.toggle("disappearleft");
 
-		filterToggler.classList.toggle("transitionright");
-		filterToggler.classList.toggle("disappearright");
+		filterToggler.classList.toggle("show");
+		filterToggler.classList.toggle("disappear");
 
 		filter.classList.remove("hide");
 		// filter.classList.toggle("transitionleft");
 		// filter.classList.toggle("disappearleft");
 
-		filter.classList.toggle("transitionright");
-		filter.classList.toggle("disappearright");
+		filter.classList.toggle("show");
+		filter.classList.toggle("disappear");
 	}
 
 	function formToggle() {
 		formToggler.classList.toggle("hide");
-		formToggler.classList.toggle("transitionright");
-		formToggler.classList.toggle("disappearright");
+		formToggler.classList.toggle("show");
+		formToggler.classList.toggle("disappear");
 
 		container.classList.toggle("transparent");
 		filterToggler.classList.toggle("transparent");
@@ -495,18 +495,18 @@ const selectorController = (() => {
 		complete.classList.toggle("transparent");
 
 		form.classList.remove("hide");
-		form.classList.toggle("transitionright");
-		form.classList.toggle("disappearright");
+		form.classList.toggle("show");
+		form.classList.toggle("disappear");
 	}
 
 	function completeToggle() {
 		completedToggler.classList.toggle("hide");
-		completedToggler.classList.toggle("transitionright");
-		completedToggler.classList.toggle("disappearright");
+		completedToggler.classList.toggle("show");
+		completedToggler.classList.toggle("disappear");
 
 		complete.classList.remove("hide");
-		complete.classList.toggle("transitionright");
-		complete.classList.toggle("disappearright");
+		complete.classList.toggle("show");
+		complete.classList.toggle("disappear");
 	}
 
 	const generate = () => {

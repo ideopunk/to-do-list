@@ -1,39 +1,41 @@
 /* Completed List guys */
 
 #completedContainer {
-	position: absolute;
-	top: 200px;
-	width: 260px;
+	margin-top: 200px;
+	width: 100%;
 	border-right-width: 0px;
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;
 }
 
-// @media (max-width: 1023px) {
-// 	#completedContainer {
-// 		position: static;
-// 		display: flex;
-//  		width: 96%;
-//  		height: 100%;
-//  		border-bottom-left-radius: 0px;
-//  		border-top-right-radius: 15px;
-//  		border-right-width: 1px;
-//  		z-index: 3;
-//  	}
-// }
-
 @media (max-width: 1023px) {
 	#completedContainer {
 		position: absolute;
-		left: 50%;
-		top: 20%;
-		width: 100%;
-		height: 100%;
-	}
+		margin: 0;
+		display: flex;
+		top: initial;
+		left: 2%;
+  		width: 96%;
+		height: 70px;
+		bottom: 0;
+  		border-bottom-left-radius: 0px;
+  		border-top-right-radius: 15px;
+		border-right-width: 1px;
+  	}
+}
+
+#completed-menu {
+	height: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 #completedList {
 	max-height: 330px;
+	display: grid;
+	grid-template-columns: 1fr;
+	grid-auto-rows: 50px;
 	overflow-y: scroll;
 	overflow-x: hidden;
 }
@@ -42,18 +44,39 @@
 	#completedList {
 		max-height: 100%;
 		height: 100%;
+		width: 100%;
 		display: flex;
 		overflow-x: scroll;
 		overflow-y: hidden;
 	}
 }
 
+@media (max-width: 1023px) {
+	#completedList .description {
+		display: none;
+	}
+}
+
+
+#completedList .tagCarrier {
+	left: initial;
+	right: 35px;
+	top: 6px;
+}
+
 #returncompleted {
-	position: absolute;
 	left: 20%;
 	width: 70%;
 	top: 10%;
 	border-radius: 15px;
+}
+
+@media (max-width: 1023px) {
+	#returncompleted {
+		font-size: x-small;
+		width: 80%;
+		height: 50%;
+	}
 }
 
 .forever {
@@ -70,6 +93,12 @@
 
 ::-webkit-scrollbar {
 	width: 5px;
+}
+
+@media (max-width: 1023px) {
+	::-webkit-scrollbar {
+		width: 2px;
+	}
 }
 
 ::-webkit-scrollbar-track {
