@@ -164,7 +164,7 @@ const userInterface = (containerListName, itemStatus) => {
 	};
 
 	// when you click on any item, it should expand to show full details
-	function expand() {
+	async function expand() {
 		let item = grabItem();
 		let carrier = event.target.parentNode;
 
@@ -194,14 +194,18 @@ const userInterface = (containerListName, itemStatus) => {
 			carrier.classList.add("taller");
 			carrier.classList.remove("shorter");
 		} else {
-			carrier.classList.add("shorter");
-			carrier.classList.remove("taller");
 			let len = carrier.childNodes.length;
 			for (let i = len - 1; i > 0; i--) {
 				if (carrier.childNodes[i].classList.contains("bonus")) {
 					carrier.removeChild(carrier.childNodes[i]);
 				}
 			}
+
+
+			carrier.classList.add("shorter");
+
+			// nanimationend...
+			carrier.classList.remove("taller");
 		}
 	}
 

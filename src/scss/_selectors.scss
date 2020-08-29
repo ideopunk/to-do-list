@@ -9,7 +9,8 @@
 	border-top-right-radius: 0px;
 	border-bottom-right-radius: 0px;	
 	top: $top;
-
+	display: flex;
+	justify-content: center;
 }
 
 @mixin phoneselector($left) {

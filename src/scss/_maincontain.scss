@@ -129,7 +129,7 @@
 
 .bonus {
 	animation-name: bonusanim;
-	animation-duration: 1s;
+	animation-duration: 0.2s;
 }
 
 @keyframes bonusanim {
@@ -188,11 +188,12 @@
 .shorter {
 	animation-name: shorteranim;
 	animation-duration: 0.3s;
+	align-self: start;
 }
 
 @keyframes shorteranim {
 	0% {
-		height: 100px;
+		height: 200%;
 	}
 	100% {
 		height: 50px;
@@ -205,14 +206,15 @@
 	grid-row-end: span 2;
 	animation-name: talleranim;
 	animation-duration: 0.3s;
+	align-self: start;
 }
 
 @keyframes talleranim {
 	0% {
-		height: 50px;
+		height: 50%;
 	}
 	100% {
-		height: 130px;
+		height: 100%;
 	}
 }
 

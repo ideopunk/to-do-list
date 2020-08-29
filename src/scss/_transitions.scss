@@ -1,35 +1,4 @@
 /* Transitions */
-.transitionleft {
-	animation-name: transitionleft;
-	animation-duration: 0.4s;
-	animation-timing-function: linear;
-}
-
-
-@keyframes transitionleft {
-	0% {
-		left: -150px;
-	}
-	100% {
-		left: 0px;
-	}
-}
-
-.disappearleft {
-	animation-name: disappearleft;
-	animation-duration: 0.4s;
-	animation-timing-function: linear;
-	left: -152px;
-}
-
-@keyframes disappearleft {
-	0% {
-		left: 0px;
-	}
-	100% {
-		left: -150px;
-	}
-}
 
 .transitionright {
 	animation-name: transitionright;
@@ -47,6 +16,21 @@
 	}
 }
 
+@media (max-width: 1023px) {
+	.transitionright {
+		bottom: 0;
+	}
+
+	@keyframes transitionright {
+		0% {
+			bottom: -300px;
+		}
+		100% {
+			bottom: 0px;
+		}
+	}
+}
+
 .disappearright {
 	animation-name: disappearright;
 	animation-duration: 0.4s;
@@ -60,5 +44,20 @@
 	}
 	100% {
 		right: -300px;
+	}
+}
+
+@media (max-width: 1023px) {
+	.disappearright {
+		bottom: -300;
+	}
+
+	@keyframes transitionright {
+		0% {
+			bottom: 0;
+		}
+		100% {
+			bottom: -300px;
+		}
 	}
 }
