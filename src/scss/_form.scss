@@ -8,17 +8,21 @@
 	border-bottom-right-radius: 0px;
 	box-sizing: border-box;
 	padding: 15px;
+	width: 100%;
+	margin-top: 40px;
 	z-index: 2;
 	position: absolute;
 }
 
 @media (max-width: 1023px) {
 	#newItemForm {
+		bottom: 0;
 		flex-direction: row;
 		justify-content: space-between;
 		flex-wrap: wrap;
 		width: 96%;
 		left: 2%;
+		padding: 3px 5px;
 		border-bottom-left-radius: 0;
 		border-bottom-width: 0;
 		border-right-width: 1px;
@@ -32,8 +36,16 @@ textarea {
 	border: 1px solid pink;
 	border-radius: 10px;
 	padding-left: 5px;
+	padding-top: 1px;
+	padding-bottom: 1px;
 	resize: none;
 	margin-top: 5px;
+	min-height: 15px;
+	height: 18px;
+	box-sizing: border-box;
+	-webkit-appearance: none;
+	-moz-appearance:    none;
+	appearance: 		none;
 }
 
 .forminput {
@@ -48,22 +60,44 @@ textarea {
 	.forminput {
 		width: fit-content;
 		max-width: 20%;
+		margin: 2px;
 	}
 }
 
 .formlabel {
+	font-size: small;
 	color: rgb(109, 46, 255);
+}
+
+@media (max-width: 1023px) {
+	.formlabel {
+		text-align: center;
+	}
+
+	.formdescription {
+		max-width: 100%;
+		width: 100%;
+		order: 3;
+	}
 }
 
 #description {
 	height: 50px;
 }
 
+@media (max-width: 1023px) {
+	#description {
+		height: 35px;
+	}
+}
+
 #priority-div {
 	order: 2;
 }
+
 #priority {
 	width: 60px;
+	height: 18px;
 	background-color: white;
 }
 

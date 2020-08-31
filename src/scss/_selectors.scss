@@ -4,6 +4,7 @@
 @mixin selector($top) {
 	position: absolute;
 	width: 40px;
+	height: 40px;
 	right: 0px;
 	border-right: 0px solid white;
 	border-top-right-radius: 0px;
@@ -11,6 +12,7 @@
 	top: $top;
 	display: flex;
 	justify-content: center;
+	align-items: center;
 }
 
 @mixin phoneselector($left) {
