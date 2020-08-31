@@ -16,6 +16,7 @@
 @mixin phoneselector($left) {
 		position: absolute;
 		width: 40px;
+		height: 40px;
 		bottom: 0px;
 		border-bottom: 0px solid white;
 		border-bottom-left-radius: 0px;
@@ -23,6 +24,7 @@
 		left: $left;
 		display: flex;
 		justify-content: center;
+		align-items: center;
 }
 
 #ex {
@@ -57,6 +59,7 @@
 
 .slctr {
 	width: 2ch;
+	height: 2ch;
 	border: 0px solid pink;
 	border-radius: 50%;
 }

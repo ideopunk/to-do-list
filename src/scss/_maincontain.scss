@@ -61,6 +61,13 @@
 	display: block;
 }
 
+@media (max-width: 1023px) {
+	.itemname {
+		padding-left: 6px;
+		border-radius: 0;
+	}
+}
+
 .itemname:hover {
 	color: purple;
 	animation-name: clrprpl;
