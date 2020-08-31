@@ -50,15 +50,20 @@ button {
 }
 
 #stuff {
-	// flex: 0 0 260px;
-	width: 260px;
+	flex: 0 0 260px;
+	// width: 260px;
 	box-sizing: border-box;
+	display: flex;
+	flex-direction: column;
 	position: relative;
+	box-sizing: border-box;
 }
 
 @media (max-width: 1023px) {
 	#stuff {
+		flex: 0 0 150px;
 		width: 100%;
+		display: block;
 	}
 }
 

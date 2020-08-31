@@ -201,11 +201,12 @@ const userInterface = (containerListName, itemStatus) => {
 				}
 			}
 
-
 			carrier.classList.add("shorter");
-
-			// nanimationend...
-			carrier.classList.remove("taller");
+			console.log("shorter");
+			setTimeout(() => {
+				carrier.classList.remove("taller");
+				console.log("not taller");
+			}, 300);
 		}
 	}
 
